@@ -963,6 +963,11 @@
           "id": "I5AceigUynU8",
           "name": "ChecksvgIcon",
           "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Checksvg.tsx"
+        },
+        {
+          "id": "iQMfo1a3dZrA",
+          "name": "Icon2Icon",
+          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Icon2.tsx"
         }
       ],
       "images": [

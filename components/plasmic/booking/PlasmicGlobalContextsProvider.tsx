@@ -114,8 +114,8 @@ export default function GlobalContextsProvider(
           ? antdConfigProviderProps.themeStyles!
           : true
           ? {
-              fontFamily: "Inter",
-              fontSize: "16px",
+              fontFamily: "var(--iran-sans-x)",
+              fontSize: "14px",
               fontWeight: "400",
               lineHeight: "1.5",
               color: "#535353",
@@ -134,7 +134,10 @@ export default function GlobalContextsProvider(
         apiConfig={
           fragmentProps && "apiConfig" in fragmentProps
             ? fragmentProps.apiConfig!
-            : { withCredentials: true }
+            : {
+                headers: { "Content-Type": "multipart/form-data" },
+                withCredentials: true
+              }
         }
         previewApiConfig={
           fragmentProps && "previewApiConfig" in fragmentProps

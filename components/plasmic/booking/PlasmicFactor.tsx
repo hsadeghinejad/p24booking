@@ -66,6 +66,8 @@ import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
+import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -73,6 +75,7 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicFactor.module.css"; // plasmic-import: vitBSaUD2KOG/css
 
+import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: iQMfo1a3dZrA/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: PgjN1jR1k265/icon
 import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: KCw0ExuGEz0B/icon
 import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: I5AceigUynU8/icon
@@ -93,7 +96,6 @@ export const PlasmicFactor__ArgProps = new Array<ArgPropType>();
 export type PlasmicFactor__OverridesType = {
   root?: Flex__<"div">;
   consultInvoiceDetails?: Flex__<typeof ApiRequest>;
-  svg?: Flex__<"svg">;
   accordion?: Flex__<typeof AntdAccordion>;
   دتخفف?: Flex__<typeof TextInput>;
   getBooks?: Flex__<typeof ApiRequest>;
@@ -196,6 +198,10 @@ function PlasmicFactor__RenderFunc(props: {
     $refs
   });
 
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsbr2UhI7UlpvR()
+  });
+
   return (
     <React.Fragment>
       <Head>
@@ -269,26 +275,58 @@ function PlasmicFactor__RenderFunc(props: {
                       sty.consultInvoiceDetails
                     )}
                     errorDisplay={
-                      <div
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__ohhE
+                          sty.freeBox__m1T7J
                         )}
                       >
-                        {"Error fetching data"}
-                      </div>
+                        <Icon2Icon
+                          className={classNames(projectcss.all, sty.svg__sJnjK)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text__u2Wyt
+                          )}
+                        >
+                          {
+                            "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
+                          }
+                        </div>
+                      </Stack__>
                     }
                     loadingDisplay={
-                      <div
+                      <Stack__
+                        as={"div"}
+                        hasGap={true}
                         className={classNames(
                           projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text___5Qg5L
+                          sty.freeBox___8IKdk
                         )}
                       >
-                        {"Loading..."}
-                      </div>
+                        <Icon2Icon
+                          className={classNames(projectcss.all, sty.svg__fLdF)}
+                          role={"img"}
+                        />
+
+                        <div
+                          className={classNames(
+                            projectcss.all,
+                            projectcss.__wab_text,
+                            sty.text___0Rjd
+                          )}
+                        >
+                          {
+                            "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
+                          }
+                        </div>
+                      </Stack__>
                     }
                     method={"GET"}
                     onError={generateStateOnChangeProp($state, [
@@ -501,9 +539,7 @@ function PlasmicFactor__RenderFunc(props: {
                       )}
                     >
                       <IconIcon
-                        data-plasmic-name={"svg"}
-                        data-plasmic-override={overrides.svg}
-                        className={classNames(projectcss.all, sty.svg)}
+                        className={classNames(projectcss.all, sty.svg___7GQyM)}
                         role={"img"}
                       />
 
@@ -711,34 +747,53 @@ function PlasmicFactor__RenderFunc(props: {
                     }
                   })()}
                   className={classNames("__wab_instance", sty.getBooks)}
-                  config={{
-                    headers: {
-                      "Content-Type": "multipart/form-data",
-                      Authorization:
-                        "Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3AyNGRvY3RvcnMuZGFya3ViZS5hcHAvVjEvYXV0aC9sb2dpbiIsImlhdCI6MTcyMzcxNjM4MCwiZXhwIjoxNzMxNDkyMzgwLCJuYmYiOjE3MjM3MTYzODAsImp0aSI6IkdKS3NkR3RiT2JVald5OUsiLCJzdWIiOiIyMDkyMzc4IiwibmFtZSI6Iti32KfZh9inIiwiZmFtaWx5Ijoi2LLYp9ix2LnbjNin2YYiLCJnZW5kZXIiOiJtYWxlIiwicm9sZSI6InVzZXIiLCJrZXkiOiJ1c2VyLWtleSIsIngtaGFzdXJhLWFsbG93ZWQtcm9sZXMiOlsicHJvdmlkZXIiLCJjb25zdW1lciIsInVzZXIiXSwieC1oYXN1cmEtcHJvdmlkZXItaWQiOiIxNzIwMzE4In0.KRb1xeO9Q_HrvteDG7nyZSobhwd6g_B9EoW1kuGuIGA"
-                    }
-                  }}
                   errorDisplay={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__ptC9T
-                      )}
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__qxTsw)}
                     >
-                      {"Error fetching data"}
-                    </div>
+                      <Icon2Icon
+                        className={classNames(projectcss.all, sty.svg___2GkUj)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__g1EDm
+                        )}
+                      >
+                        {
+                          "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
+                        }
+                      </div>
+                    </Stack__>
                   }
                   loadingDisplay={
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__aG7Rb
-                      )}
+                    <Stack__
+                      as={"div"}
+                      hasGap={true}
+                      className={classNames(projectcss.all, sty.freeBox__x8YkE)}
                     >
-                      {"Loading..."}
-                    </div>
+                      <Icon2Icon
+                        className={classNames(projectcss.all, sty.svg__pnTbF)}
+                        role={"img"}
+                      />
+
+                      <div
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.__wab_text,
+                          sty.text__aG7Rb
+                        )}
+                      >
+                        {
+                          "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
+                        }
+                      </div>
+                    </Stack__>
                   }
                   method={"POST"}
                   onError={generateStateOnChangeProp($state, [
@@ -897,7 +952,7 @@ function PlasmicFactor__RenderFunc(props: {
                                     e?.plasmicType ===
                                       "PlasmicUndefinedDataError"
                                   ) {
-                                    return "\u0641\u0631\u062d \u0646\u0627\u0632 \u0631\u0634\u06cc\u062f\u06cc";
+                                    return "-";
                                   }
                                   throw e;
                                 }
@@ -907,7 +962,7 @@ function PlasmicFactor__RenderFunc(props: {
                         }
                         <React.Fragment>
                           {
-                            " \u0647\u0633\u062a\u0645.\n\u067e\u0633 \u0627\u0632 \u0646\u0647\u0627\u06cc\u06cc \u0634\u062f\u0646 \u0646\u0648\u0628\u062a "
+                            " \u0647\u0633\u062a\u0645.\n\u067e\u0633 \u0627\u0632 \u0646\u0647\u0627\u06cc\u06cc \u0634\u062f\u0646 \u0646\u0648\u0628\u062a\u060c "
                           }
                         </React.Fragment>
                         {
@@ -973,7 +1028,7 @@ function PlasmicFactor__RenderFunc(props: {
                         }
                         <React.Fragment>
                           {
-                            " \u0634\u0645\u0627 \u0631\u0627 \u0648\u06cc\u0632\u06cc\u062a \u062e\u0648\u0627\u0647\u0645 \u06a9\u0631\u062f."
+                            "\u0634\u0645\u0627 \u0631\u0627 \u0648\u06cc\u0632\u06cc\u062a \u062e\u0648\u0627\u0647\u0645 \u06a9\u0631\u062f."
                           }
                         </React.Fragment>
                       </React.Fragment>
@@ -993,14 +1048,12 @@ const PlasmicDescendants = {
   root: [
     "root",
     "consultInvoiceDetails",
-    "svg",
     "accordion",
     "\u062f\u062a\u062e\u0641\u0641",
     "getBooks",
     "img"
   ],
   consultInvoiceDetails: ["consultInvoiceDetails"],
-  svg: ["svg"],
   accordion: ["accordion", "\u062f\u062a\u062e\u0641\u0641"],
   دتخفف: ["\u062f\u062a\u062e\u0641\u0641"],
   getBooks: ["getBooks", "img"],
@@ -1012,7 +1065,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   consultInvoiceDetails: typeof ApiRequest;
-  svg: "svg";
   accordion: typeof AntdAccordion;
   دتخفف: typeof TextInput;
   getBooks: typeof ApiRequest;
@@ -1080,7 +1132,6 @@ export const PlasmicFactor = Object.assign(
   {
     // Helper components rendering sub-elements
     consultInvoiceDetails: makeNodeComponent("consultInvoiceDetails"),
-    svg: makeNodeComponent("svg"),
     accordion: makeNodeComponent("accordion"),
     دتخفف: makeNodeComponent("\u062f\u062a\u062e\u0641\u0641"),
     getBooks: makeNodeComponent("getBooks"),
