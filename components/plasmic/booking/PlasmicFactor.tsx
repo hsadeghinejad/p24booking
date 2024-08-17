@@ -65,6 +65,7 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
+import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
 
@@ -96,8 +97,9 @@ export const PlasmicFactor__ArgProps = new Array<ArgPropType>();
 export type PlasmicFactor__OverridesType = {
   root?: Flex__<"div">;
   consultInvoiceDetails?: Flex__<typeof ApiRequest>;
+  discountRow?: Flex__<"div">;
   accordion?: Flex__<typeof AntdAccordion>;
-  دتخفف?: Flex__<typeof TextInput>;
+  txtDiscount?: Flex__<typeof TextInput>;
   getBooks?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
 };
@@ -133,6 +135,8 @@ function PlasmicFactor__RenderFunc(props: {
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
 
+  const $globalActions = useGlobalActions?.();
+
   const stateSpecs: Parameters<typeof useDollarState>[0] = React.useMemo(
     () => [
       {
@@ -165,7 +169,7 @@ function PlasmicFactor__RenderFunc(props: {
         )
       },
       {
-        path: "دتخفف.value",
+        path: "txtDiscount.value",
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
@@ -187,6 +191,55 @@ function PlasmicFactor__RenderFunc(props: {
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
+      },
+      {
+        path: "discountShow",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "discountButton",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => true
+      },
+      {
+        path: "serviceCost",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "vat",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "discount",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "discountToken",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "payableCost",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "paymentButtonText",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          "\u067e\u0631\u062f\u0627\u062e\u062a \u0648 \u0622\u063a\u0627\u0632 \u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0632\u0634\u06a9"
       }
     ],
     [$props, $ctx, $refs]
@@ -391,15 +444,15 @@ function PlasmicFactor__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    (
-                                      $state.consultInvoiceDetails.data.result
-                                        .service_price / 10
-                                    )
-                                      .toString()
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                                    " تومان"
-                                  );
+                                  return $state.serviceCost == ""
+                                    ? (
+                                        $state.consultInvoiceDetails.data.result
+                                          .service_price / 10
+                                      )
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                                        " تومان"
+                                    : $state.serviceCost;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -446,15 +499,15 @@ function PlasmicFactor__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    (
-                                      $state.consultInvoiceDetails.data.result
-                                        .vat / 10
-                                    )
-                                      .toString()
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                                    " تومان"
-                                  );
+                                  return $state.vat == ""
+                                    ? (
+                                        $state.consultInvoiceDetails.data.result
+                                          .vat / 10
+                                      )
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                                        " تومان"
+                                    : $state.vat;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -470,6 +523,79 @@ function PlasmicFactor__RenderFunc(props: {
                           </div>
                         </div>
                       </div>
+                      {(() => {
+                        try {
+                          return $state.discountShow;
+                        } catch (e) {
+                          if (
+                            e instanceof TypeError ||
+                            e?.plasmicType === "PlasmicUndefinedDataError"
+                          ) {
+                            return true;
+                          }
+                          throw e;
+                        }
+                      })() ? (
+                        <div
+                          data-plasmic-name={"discountRow"}
+                          data-plasmic-override={overrides.discountRow}
+                          className={classNames(
+                            projectcss.all,
+                            sty.discountRow
+                          )}
+                        >
+                          <div
+                            className={classNames(
+                              projectcss.all,
+                              sty.freeBox__tpQtF
+                            )}
+                          >
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__fkfEa
+                              )}
+                            >
+                              {"\u062a\u062e\u0641\u06cc\u0641:"}
+                            </div>
+                            <div
+                              className={classNames(
+                                projectcss.all,
+                                projectcss.__wab_text,
+                                sty.text__iGvCl
+                              )}
+                            >
+                              <React.Fragment>
+                                {(() => {
+                                  try {
+                                    return $state.discount == ""
+                                      ? (
+                                          $state.consultInvoiceDetails.data
+                                            .result.vat / 10
+                                        )
+                                          .toString()
+                                          .replace(
+                                            /\B(?=(\d{3})+(?!\d))/g,
+                                            ","
+                                          ) + " تومان"
+                                      : $state.discount;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return "-";
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                              </React.Fragment>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
                       <div
                         className={classNames(
                           projectcss.all,
@@ -503,15 +629,15 @@ function PlasmicFactor__RenderFunc(props: {
                             <React.Fragment>
                               {(() => {
                                 try {
-                                  return (
-                                    (
-                                      $state.consultInvoiceDetails.data.result
-                                        .book_price / 10
-                                    )
-                                      .toString()
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-                                    " تومان"
-                                  );
+                                  return $state.payableCost == ""
+                                    ? (
+                                        $state.consultInvoiceDetails.data.result
+                                          .book_price / 10
+                                      )
+                                        .toString()
+                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                                        " تومان"
+                                    : $state.payableCost;
                                 } catch (e) {
                                   if (
                                     e instanceof TypeError ||
@@ -599,17 +725,29 @@ function PlasmicFactor__RenderFunc(props: {
                               )}
                             >
                               <TextInput
-                                data-plasmic-name={
-                                  "\u062f\u062a\u062e\u0641\u0641"
-                                }
-                                data-plasmic-override={overrides.دتخفف}
+                                data-plasmic-name={"txtDiscount"}
+                                data-plasmic-override={overrides.txtDiscount}
                                 className={classNames(
                                   "__wab_instance",
-                                  sty.دتخفف
+                                  sty.txtDiscount
                                 )}
+                                isDisabled={(() => {
+                                  try {
+                                    return !$state.discountButton;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [];
+                                    }
+                                    throw e;
+                                  }
+                                })()}
                                 onChange={(...eventArgs) => {
                                   generateStateOnChangeProp($state, [
-                                    "دتخفف",
+                                    "txtDiscount",
                                     "value"
                                   ])(
                                     (e => e.target?.value).apply(
@@ -623,7 +761,7 @@ function PlasmicFactor__RenderFunc(props: {
                                 }
                                 value={
                                   generateStateValueProp($state, [
-                                    "دتخفف",
+                                    "txtDiscount",
                                     "value"
                                   ]) ?? ""
                                 }
@@ -645,6 +783,563 @@ function PlasmicFactor__RenderFunc(props: {
                                   "__wab_instance",
                                   sty.button__hyD7Y
                                 )}
+                                isDisabled={(() => {
+                                  try {
+                                    return !$state.discountButton;
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return [];
+                                    }
+                                    throw e;
+                                  }
+                                })()}
+                                onClick={async event => {
+                                  const $steps = {};
+
+                                  $steps["showMessage"] =
+                                    $state.txtDiscount.value == ""
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "error",
+                                              "\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u0626\u06cc\u062f",
+                                              "top-left"
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.showToast"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["showMessage"] != null &&
+                                    typeof $steps["showMessage"] === "object" &&
+                                    typeof $steps["showMessage"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showMessage"] = await $steps[
+                                      "showMessage"
+                                    ];
+                                  }
+
+                                  $steps["inquiryDiscount"] =
+                                    $state.txtDiscount.value != ""
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              undefined,
+                                              (() => {
+                                                try {
+                                                  return (
+                                                    "https://www.paziresh24.com/api/discount/v1/inquiry?book_id=" +
+                                                    $state.getBooks.data
+                                                      .result[0].book_id +
+                                                    "&code=" +
+                                                    $state.txtDiscount.value
+                                                  );
+                                                } catch (e) {
+                                                  if (
+                                                    e instanceof TypeError ||
+                                                    e?.plasmicType ===
+                                                      "PlasmicUndefinedDataError"
+                                                  ) {
+                                                    return undefined;
+                                                  }
+                                                  throw e;
+                                                }
+                                              })()
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.apiRequest"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["inquiryDiscount"] != null &&
+                                    typeof $steps["inquiryDiscount"] ===
+                                      "object" &&
+                                    typeof $steps["inquiryDiscount"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["inquiryDiscount"] = await $steps[
+                                      "inquiryDiscount"
+                                    ];
+                                  }
+
+                                  $steps["updateServiceCost"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["serviceCost"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              (
+                                                $steps.inquiryDiscount.data
+                                                  .result.service_price / 10
+                                              )
+                                                .toString()
+                                                .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ","
+                                                ) + " تومان"
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updateServiceCost"] != null &&
+                                    typeof $steps["updateServiceCost"] ===
+                                      "object" &&
+                                    typeof $steps["updateServiceCost"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updateServiceCost"] = await $steps[
+                                      "updateServiceCost"
+                                    ];
+                                  }
+
+                                  $steps["updateVat"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["vat"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              (
+                                                $steps.inquiryDiscount.data
+                                                  .result.vat / 10
+                                              )
+                                                .toString()
+                                                .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ","
+                                                ) + " تومان"
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updateVat"] != null &&
+                                    typeof $steps["updateVat"] === "object" &&
+                                    typeof $steps["updateVat"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updateVat"] = await $steps[
+                                      "updateVat"
+                                    ];
+                                  }
+
+                                  $steps["updateDiscount"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["discount"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              (
+                                                $steps.inquiryDiscount.data
+                                                  .result.discount_price / 10
+                                              )
+                                                .toString()
+                                                .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ","
+                                                ) + " تومان"
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updateDiscount"] != null &&
+                                    typeof $steps["updateDiscount"] ===
+                                      "object" &&
+                                    typeof $steps["updateDiscount"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updateDiscount"] = await $steps[
+                                      "updateDiscount"
+                                    ];
+                                  }
+
+                                  $steps["updatePayableCost"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["payableCost"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              (
+                                                $steps.inquiryDiscount.data
+                                                  .result.payable_cost / 10
+                                              )
+                                                .toString()
+                                                .replace(
+                                                  /\B(?=(\d{3})+(?!\d))/g,
+                                                  ","
+                                                ) + " تومان"
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updatePayableCost"] != null &&
+                                    typeof $steps["updatePayableCost"] ===
+                                      "object" &&
+                                    typeof $steps["updatePayableCost"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["updatePayableCost"] = await $steps[
+                                      "updatePayableCost"
+                                    ];
+                                  }
+
+                                  $steps["updateDiscountToken"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["discountToken"]
+                                            },
+                                            operation: 0,
+                                            value:
+                                              $steps.inquiryDiscount.data.result
+                                                .token
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updateDiscountToken"] != null &&
+                                    typeof $steps["updateDiscountToken"] ===
+                                      "object" &&
+                                    typeof $steps["updateDiscountToken"]
+                                      .then === "function"
+                                  ) {
+                                    $steps["updateDiscountToken"] =
+                                      await $steps["updateDiscountToken"];
+                                  }
+
+                                  $steps["showDiscount"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["discountShow"]
+                                            },
+                                            operation: 0,
+                                            value: true
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["showDiscount"] != null &&
+                                    typeof $steps["showDiscount"] ===
+                                      "object" &&
+                                    typeof $steps["showDiscount"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["showDiscount"] = await $steps[
+                                      "showDiscount"
+                                    ];
+                                  }
+
+                                  $steps["disableDiscountButton"] =
+                                    $steps.inquiryDiscount.data.result !=
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["discountButton"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["disableDiscountButton"] != null &&
+                                    typeof $steps["disableDiscountButton"] ===
+                                      "object" &&
+                                    typeof $steps["disableDiscountButton"]
+                                      .then === "function"
+                                  ) {
+                                    $steps["disableDiscountButton"] =
+                                      await $steps["disableDiscountButton"];
+                                  }
+
+                                  $steps["hideDiscount"] =
+                                    $steps.inquiryDiscount.data.result ==
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: ["discountShow"]
+                                            },
+                                            operation: 0,
+                                            value: false
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["hideDiscount"] != null &&
+                                    typeof $steps["hideDiscount"] ===
+                                      "object" &&
+                                    typeof $steps["hideDiscount"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["hideDiscount"] = await $steps[
+                                      "hideDiscount"
+                                    ];
+                                  }
+
+                                  $steps["discountNotFound"] =
+                                    $steps.inquiryDiscount.data.result ==
+                                    undefined
+                                      ? (() => {
+                                          const actionArgs = {
+                                            args: [
+                                              "error",
+                                              "\u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u0648\u0627\u0631\u062f \u0634\u062f\u0647 \u0627\u0634\u062a\u0628\u0627\u0647 \u0645\u06cc \u0628\u0627\u0634\u062f!",
+                                              "top-left"
+                                            ]
+                                          };
+                                          return $globalActions[
+                                            "Fragment.showToast"
+                                          ]?.apply(null, [...actionArgs.args]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["discountNotFound"] != null &&
+                                    typeof $steps["discountNotFound"] ===
+                                      "object" &&
+                                    typeof $steps["discountNotFound"].then ===
+                                      "function"
+                                  ) {
+                                    $steps["discountNotFound"] = await $steps[
+                                      "discountNotFound"
+                                    ];
+                                  }
+
+                                  $steps["updatePaymentButtonText"] =
+                                    $steps.inquiryDiscount.data.result
+                                      .payable_cost == "0"
+                                      ? (() => {
+                                          const actionArgs = {
+                                            variable: {
+                                              objRoot: $state,
+                                              variablePath: [
+                                                "paymentButtonText"
+                                              ]
+                                            },
+                                            operation: 0,
+                                            value: "آغاز گفتگو با پزشک"
+                                          };
+                                          return (({
+                                            variable,
+                                            value,
+                                            startIndex,
+                                            deleteCount
+                                          }) => {
+                                            if (!variable) {
+                                              return;
+                                            }
+                                            const { objRoot, variablePath } =
+                                              variable;
+
+                                            $stateSet(
+                                              objRoot,
+                                              variablePath,
+                                              value
+                                            );
+                                            return value;
+                                          })?.apply(null, [actionArgs]);
+                                        })()
+                                      : undefined;
+                                  if (
+                                    $steps["updatePaymentButtonText"] != null &&
+                                    typeof $steps["updatePaymentButtonText"] ===
+                                      "object" &&
+                                    typeof $steps["updatePaymentButtonText"]
+                                      .then === "function"
+                                  ) {
+                                    $steps["updatePaymentButtonText"] =
+                                      await $steps["updatePaymentButtonText"];
+                                  }
+                                }}
                               />
                             </div>
                           </AntdAccordionItem>
@@ -718,9 +1413,21 @@ function PlasmicFactor__RenderFunc(props: {
                         sty.text__h6Vub
                       )}
                     >
-                      {
-                        "\u067e\u0631\u062f\u0627\u062e\u062a \u0648 \u0622\u063a\u0627\u0632 \u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0632\u0634\u06a9"
-                      }
+                      <React.Fragment>
+                        {(() => {
+                          try {
+                            return $state.paymentButtonText;
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return "\u067e\u0631\u062f\u0627\u062e\u062a \u0648 \u0622\u063a\u0627\u0632 \u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0632\u0634\u06a9";
+                            }
+                            throw e;
+                          }
+                        })()}
+                      </React.Fragment>
                     </div>
                   }
                   className={classNames("__wab_instance", sty.button__lRwjT)}
@@ -1048,14 +1755,16 @@ const PlasmicDescendants = {
   root: [
     "root",
     "consultInvoiceDetails",
+    "discountRow",
     "accordion",
-    "\u062f\u062a\u062e\u0641\u0641",
+    "txtDiscount",
     "getBooks",
     "img"
   ],
-  consultInvoiceDetails: ["consultInvoiceDetails"],
-  accordion: ["accordion", "\u062f\u062a\u062e\u0641\u0641"],
-  دتخفف: ["\u062f\u062a\u062e\u0641\u0641"],
+  consultInvoiceDetails: ["consultInvoiceDetails", "discountRow"],
+  discountRow: ["discountRow"],
+  accordion: ["accordion", "txtDiscount"],
+  txtDiscount: ["txtDiscount"],
   getBooks: ["getBooks", "img"],
   img: ["img"]
 } as const;
@@ -1065,8 +1774,9 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   consultInvoiceDetails: typeof ApiRequest;
+  discountRow: "div";
   accordion: typeof AntdAccordion;
-  دتخفف: typeof TextInput;
+  txtDiscount: typeof TextInput;
   getBooks: typeof ApiRequest;
   img: typeof PlasmicImg__;
 };
@@ -1132,8 +1842,9 @@ export const PlasmicFactor = Object.assign(
   {
     // Helper components rendering sub-elements
     consultInvoiceDetails: makeNodeComponent("consultInvoiceDetails"),
+    discountRow: makeNodeComponent("discountRow"),
     accordion: makeNodeComponent("accordion"),
-    دتخفف: makeNodeComponent("\u062f\u062a\u062e\u0641\u0641"),
+    txtDiscount: makeNodeComponent("txtDiscount"),
     getBooks: makeNodeComponent("getBooks"),
     img: makeNodeComponent("img"),
 
