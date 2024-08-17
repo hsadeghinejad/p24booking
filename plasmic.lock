@@ -404,22 +404,22 @@
         {
           "type": "renderModule",
           "assetId": "vitBSaUD2KOG",
-          "checksum": "13dd00feb367107cd8730af0bd631d4f"
+          "checksum": "4d6f4cc34979e9814cad7eb6b546a3e5"
         },
         {
           "type": "cssRules",
           "assetId": "vitBSaUD2KOG",
-          "checksum": "13dd00feb367107cd8730af0bd631d4f"
-        },
-        {
-          "assetId": "w8Roqs5CeKXUVajBnjnyHA",
-          "type": "projectCss",
-          "checksum": "f39a1ffd0fccf3fc05e038da13f7415b"
+          "checksum": "4d6f4cc34979e9814cad7eb6b546a3e5"
         },
         {
           "type": "icon",
           "assetId": "iQMfo1a3dZrA",
           "checksum": "018c108008fbaf958e1857d52baf6b55"
+        },
+        {
+          "assetId": "w8Roqs5CeKXUVajBnjnyHA",
+          "type": "projectCss",
+          "checksum": "f39a1ffd0fccf3fc05e038da13f7415b"
         }
       ],
       "codegenVersion": "0.0.1"
