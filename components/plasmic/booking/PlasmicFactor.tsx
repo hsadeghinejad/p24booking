@@ -65,7 +65,6 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
 
 import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
 
@@ -1481,36 +1480,30 @@ function PlasmicFactor__RenderFunc(props: {
                       $steps.consultPayment.data.status == true
                         ? (() => {
                             const actionArgs = {
-                              destination: (() => {
-                                try {
-                                  return (
-                                    "https://www.paziresh24.com" +
-                                    $steps.consultPayment.data.url
-                                  );
-                                } catch (e) {
-                                  if (
-                                    e instanceof TypeError ||
-                                    e?.plasmicType ===
-                                      "PlasmicUndefinedDataError"
-                                  ) {
-                                    return undefined;
+                              args: [
+                                (() => {
+                                  try {
+                                    return (
+                                      "https://www.paziresh24.com" +
+                                      $steps.consultPayment.data.url
+                                    );
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
                                   }
-                                  throw e;
-                                }
-                              })()
+                                })()
+                              ]
                             };
-                            return (({ destination }) => {
-                              if (
-                                typeof destination === "string" &&
-                                destination.startsWith("#")
-                              ) {
-                                document
-                                  .getElementById(destination.substr(1))
-                                  .scrollIntoView({ behavior: "smooth" });
-                              } else {
-                                __nextRouter?.push(destination);
-                              }
-                            })?.apply(null, [actionArgs]);
+                            return $globalActions["Hamdast.openLink"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
                           })()
                         : undefined;
                     if (

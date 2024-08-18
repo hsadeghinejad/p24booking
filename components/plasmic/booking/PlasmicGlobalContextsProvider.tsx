@@ -10,22 +10,23 @@ import { AntdConfigProvider } from "@plasmicpkgs/antd5/skinny/registerConfigProv
 import { Fragment } from "@/fragment/fragment"; // plasmic-import: OvCMoc4AwXFr/codeComponent
 import { GrowthBook } from "@/fragment/growthbook"; // plasmic-import: cVN_AaRqWgUX/codeComponent
 import { Splunk } from "@/fragment/splunk"; // plasmic-import: cmsEWEFTbAGQ/codeComponent
+import { Hamdast } from "@/hamdast/hamdast"; // plasmic-import: g98oiBNnZPTf/codeComponent
 
 export interface GlobalContextsProviderProps {
   children?: React.ReactElement;
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
-
   fragmentProps?: Partial<
     Omit<React.ComponentProps<typeof Fragment>, "children">
   >;
-
   growthBookProps?: Partial<
     Omit<React.ComponentProps<typeof GrowthBook>, "children">
   >;
-
   splunkProps?: Partial<Omit<React.ComponentProps<typeof Splunk>, "children">>;
+  hamdastProps?: Partial<
+    Omit<React.ComponentProps<typeof Hamdast>, "children">
+  >;
 }
 
 export default function GlobalContextsProvider(
@@ -36,7 +37,8 @@ export default function GlobalContextsProvider(
     antdConfigProviderProps,
     fragmentProps,
     growthBookProps,
-    splunkProps
+    splunkProps,
+    hamdastProps
   } = props;
 
   return (
@@ -121,7 +123,7 @@ export default function GlobalContextsProvider(
               fontSize: "14px",
               fontWeight: "400",
               lineHeight: "1.5",
-              color: "#535353",
+              color: "#000000",
               letterSpacing: "normal"
             }
           : undefined
@@ -153,9 +155,7 @@ export default function GlobalContextsProvider(
             : "#000000"
         }
         rtl={
-          fragmentProps && "rtl" in fragmentProps
-            ? fragmentProps.rtl!
-            : undefined
+          fragmentProps && "rtl" in fragmentProps ? fragmentProps.rtl! : true
         }
       >
         <GrowthBook
@@ -189,7 +189,16 @@ export default function GlobalContextsProvider(
                 : undefined
             }
           >
-            {children}
+            <Hamdast
+              {...hamdastProps}
+              clientKey={
+                hamdastProps && "clientKey" in hamdastProps
+                  ? hamdastProps.clientKey!
+                  : undefined
+              }
+            >
+              {children}
+            </Hamdast>
           </Splunk>
         </GrowthBook>
       </Fragment>

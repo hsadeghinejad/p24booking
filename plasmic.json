@@ -880,20 +880,6 @@
       "cssFilePath": "plasmic/booking/plasmic.module.css",
       "components": [
         {
-          "id": "ytStpyclrqLM",
-          "name": "Homepage",
-          "type": "managed",
-          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
-          "renderModuleFilePath": "plasmic/booking/PlasmicHomepage.tsx",
-          "importSpec": {
-            "modulePath": "../src/pages/index.tsx"
-          },
-          "cssFilePath": "plasmic/booking/PlasmicHomepage.module.css",
-          "scheme": "blackbox",
-          "componentType": "page",
-          "path": "/"
-        },
-        {
           "id": "20zB4NhmWaQs",
           "name": "BookingCard",
           "type": "managed",
@@ -946,6 +932,20 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/factor/[center_id]/[book_id]"
+        },
+        {
+          "id": "lj052EBNJq5u",
+          "name": "ChooseSubUser",
+          "type": "managed",
+          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
+          "renderModuleFilePath": "plasmic/booking/PlasmicChooseSubUser.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/booking/[slug].tsx"
+          },
+          "cssFilePath": "plasmic/booking/PlasmicChooseSubUser.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/booking/[slug]"
         }
       ],
       "icons": [
@@ -980,6 +980,16 @@
           "id": "2td-T50uyt2F",
           "name": "money-back-guarantee.png",
           "filePath": "../public/plasmic/booking/images/moneyBackGuaranteepng.png"
+        },
+        {
+          "id": "ohuniR1aQium",
+          "name": "image",
+          "filePath": "../public/plasmic/booking/images/image.svg"
+        },
+        {
+          "id": "T-mA9C-x3zQ8",
+          "name": "image 2",
+          "filePath": "../public/plasmic/booking/images/image2.svg"
         }
       ],
       "indirect": false,
@@ -1075,6 +1085,12 @@
           "name": "Splunk",
           "displayName": "Splunk",
           "componentImportPath": "@/fragment/splunk"
+        },
+        {
+          "id": "g98oiBNnZPTf",
+          "name": "Hamdast",
+          "displayName": "Hamdast",
+          "componentImportPath": "@/hamdast/hamdast"
         }
       ],
       "customFunctions": []
