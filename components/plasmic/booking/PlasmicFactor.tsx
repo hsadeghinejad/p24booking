@@ -851,7 +851,9 @@ function PlasmicFactor__RenderFunc(props: {
                                                   }
                                                   throw e;
                                                 }
-                                              })()
+                                              })(),
+                                              undefined,
+                                              undefined
                                             ]
                                           };
                                           return $globalActions[
@@ -1431,6 +1433,96 @@ function PlasmicFactor__RenderFunc(props: {
                     </div>
                   }
                   className={classNames("__wab_instance", sty.button__lRwjT)}
+                  onClick={async event => {
+                    const $steps = {};
+
+                    $steps["consultPayment"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            args: [
+                              "POST",
+                              "https://apigw.paziresh24.com/consult-payment",
+                              undefined,
+                              (() => {
+                                try {
+                                  return {
+                                    book_id:
+                                      $state.getBooks.data.result[0].book_id,
+                                    discount_token: $state.discountToken
+                                  };
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return {};
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            ]
+                          };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["consultPayment"] != null &&
+                      typeof $steps["consultPayment"] === "object" &&
+                      typeof $steps["consultPayment"].then === "function"
+                    ) {
+                      $steps["consultPayment"] = await $steps["consultPayment"];
+                    }
+
+                    $steps["goToPaymentPage"] =
+                      $steps.consultPayment.data.status == true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return (
+                                    "https://www.paziresh24.com" +
+                                    $steps.consultPayment.data.url
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                    if (
+                      $steps["goToPaymentPage"] != null &&
+                      typeof $steps["goToPaymentPage"] === "object" &&
+                      typeof $steps["goToPaymentPage"].then === "function"
+                    ) {
+                      $steps["goToPaymentPage"] = await $steps[
+                        "goToPaymentPage"
+                      ];
+                    }
+                  }}
                 />
               </Stack__>
               <div className={classNames(projectcss.all, sty.freeBox__g0Crk)}>
