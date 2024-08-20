@@ -621,6 +621,46 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                             $steps["goToPage"] = await $steps["goToPage"];
                           }
                         }}
+                        onClick={async event => {
+                          const $steps = {};
+
+                          $steps["updateSelectedUser"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["selectedUser"]
+                                  },
+                                  operation: 0,
+                                  value: currentItem
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["updateSelectedUser"] != null &&
+                            typeof $steps["updateSelectedUser"] === "object" &&
+                            typeof $steps["updateSelectedUser"].then ===
+                              "function"
+                          ) {
+                            $steps["updateSelectedUser"] = await $steps[
+                              "updateSelectedUser"
+                            ];
+                          }
+                        }}
                         selected={(() => {
                           try {
                             return currentItem.id == $state.selectedUser.id;

@@ -90,11 +90,13 @@ export const PlasmicSubUserCard__VariantProps = new Array<VariantPropType>(
 export type PlasmicSubUserCard__ArgsType = {
   subUser?: any;
   onBook?: (messenger: string) => void;
+  onClick?: (event: any) => void;
 };
 type ArgPropType = keyof PlasmicSubUserCard__ArgsType;
 export const PlasmicSubUserCard__ArgProps = new Array<ArgPropType>(
   "subUser",
-  "onBook"
+  "onBook",
+  "onClick"
 );
 
 export type PlasmicSubUserCard__OverridesType = {
@@ -104,6 +106,7 @@ export type PlasmicSubUserCard__OverridesType = {
 export interface DefaultSubUserCardProps {
   subUser?: any;
   onBook?: (messenger: string) => void;
+  onClick?: (event: any) => void;
   selected?: SingleBooleanChoiceArg<"selected">;
   className?: string;
 }
@@ -174,6 +177,7 @@ function PlasmicSubUserCard__RenderFunc(props: {
         sty.root,
         { [sty.rootselected]: hasVariant($state, "selected", "selected") }
       )}
+      onClick={args.onClick}
     >
       <div className={classNames(projectcss.all, sty.freeBox__ckgeg)}>
         <Stack__
