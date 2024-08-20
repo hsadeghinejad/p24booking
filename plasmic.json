@@ -880,19 +880,6 @@
       "cssFilePath": "plasmic/booking/plasmic.module.css",
       "components": [
         {
-          "id": "20zB4NhmWaQs",
-          "name": "BookingCard",
-          "type": "managed",
-          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
-          "renderModuleFilePath": "plasmic/booking/PlasmicBookingCard.tsx",
-          "importSpec": {
-            "modulePath": "BookingCard.tsx"
-          },
-          "cssFilePath": "plasmic/booking/PlasmicBookingCard.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "_yahxnQi1d3a",
           "name": "TextInput",
           "type": "managed",
@@ -905,19 +892,6 @@
           "scheme": "blackbox",
           "componentType": "component",
           "plumeType": "text-input"
-        },
-        {
-          "id": "hunnRfsfkdfB",
-          "name": "FactorCom",
-          "type": "managed",
-          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
-          "renderModuleFilePath": "plasmic/booking/PlasmicFactorCom.tsx",
-          "importSpec": {
-            "modulePath": "FactorCom.tsx"
-          },
-          "cssFilePath": "plasmic/booking/PlasmicFactorCom.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
         },
         {
           "id": "vitBSaUD2KOG",
@@ -946,6 +920,19 @@
           "scheme": "blackbox",
           "componentType": "page",
           "path": "/booking/[slug]"
+        },
+        {
+          "id": "D8nfHqzg7emF",
+          "name": "SubUserCard",
+          "type": "managed",
+          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
+          "renderModuleFilePath": "plasmic/booking/PlasmicSubUserCard.tsx",
+          "importSpec": {
+            "modulePath": "SubUserCard.tsx"
+          },
+          "cssFilePath": "plasmic/booking/PlasmicSubUserCard.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
@@ -990,6 +977,21 @@
           "id": "T-mA9C-x3zQ8",
           "name": "image 2",
           "filePath": "../public/plasmic/booking/images/image2.svg"
+        },
+        {
+          "id": "JxVHKmi5CLt6",
+          "name": "image 3",
+          "filePath": "../public/plasmic/booking/images/image3.svg"
+        },
+        {
+          "id": "FUXPQMXu57sg",
+          "name": "image 4",
+          "filePath": "../public/plasmic/booking/images/image4.svg"
+        },
+        {
+          "id": "YA45N6POkpEA",
+          "name": "image 5",
+          "filePath": "../public/plasmic/booking/images/image5.svg"
         }
       ],
       "indirect": false,

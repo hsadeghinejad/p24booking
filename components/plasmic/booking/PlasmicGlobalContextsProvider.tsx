@@ -17,12 +17,15 @@ export interface GlobalContextsProviderProps {
   antdConfigProviderProps?: Partial<
     Omit<React.ComponentProps<typeof AntdConfigProvider>, "children">
   >;
+
   fragmentProps?: Partial<
     Omit<React.ComponentProps<typeof Fragment>, "children">
   >;
+
   growthBookProps?: Partial<
     Omit<React.ComponentProps<typeof GrowthBook>, "children">
   >;
+
   splunkProps?: Partial<Omit<React.ComponentProps<typeof Splunk>, "children">>;
   hamdastProps?: Partial<
     Omit<React.ComponentProps<typeof Hamdast>, "children">

@@ -134,6 +134,13 @@
   --mixin-5lBgvmjmf0MC_white-space: pre-wrap;
 }
 
+.plasmic_mixins {
+  --mixin-JA9mKW83V9Dk_white-space: pre-wrap;
+  --plasmic-mixin-selected-item_white-space: var(
+    --mixin-JA9mKW83V9Dk_white-space
+  );
+}
+
 :where(.all) {
   display: block;
   white-space: inherit;
