@@ -228,6 +228,12 @@ function PlasmicChooseSubUser__RenderFunc(props: {
         type: "private",
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) => ""
+      },
+      {
+        path: "displayLoader",
+        type: "private",
+        variableType: "boolean",
+        initFunc: ({ $props, $state, $queries, $ctx }) => false
       }
     ],
     [$props, $ctx, $refs]
@@ -358,6 +364,28 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                   ])}
                   url={"https://apigw.paziresh24.com/api/listSubUser"}
                 >
+                  {(() => {
+                    try {
+                      return $state.displayLoader;
+                    } catch (e) {
+                      if (
+                        e instanceof TypeError ||
+                        e?.plasmicType === "PlasmicUndefinedDataError"
+                      ) {
+                        return true;
+                      }
+                      throw e;
+                    }
+                  })() ? (
+                    <div
+                      className={classNames(projectcss.all, sty.freeBox__moDkr)}
+                    >
+                      <Icon2Icon
+                        className={classNames(projectcss.all, sty.svg__hu7W2)}
+                        role={"img"}
+                      />
+                    </div>
+                  ) : null}
                   {(_par => (!_par ? [] : Array.isArray(_par) ? _par : [_par]))(
                     (() => {
                       try {
@@ -389,6 +417,42 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                         key={currentIndex}
                         onBook={async messenger => {
                           const $steps = {};
+
+                          $steps["displayLoader"] = true
+                            ? (() => {
+                                const actionArgs = {
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["displayLoader"]
+                                  },
+                                  operation: 0,
+                                  value: true
+                                };
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
+                                  }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
+                                })?.apply(null, [actionArgs]);
+                              })()
+                            : undefined;
+                          if (
+                            $steps["displayLoader"] != null &&
+                            typeof $steps["displayLoader"] === "object" &&
+                            typeof $steps["displayLoader"].then === "function"
+                          ) {
+                            $steps["displayLoader"] = await $steps[
+                              "displayLoader"
+                            ];
+                          }
 
                           $steps["freeturn"] = true
                             ? (() => {
@@ -502,9 +566,79 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                             $steps["book"] = await $steps["book"];
                           }
 
-                          $steps["bookingFailed"] =
+                          $steps["freeturnFailed"] =
                             $steps.freeturn.data.result.request_code ==
                             undefined
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["freeturnFailed"] != null &&
+                            typeof $steps["freeturnFailed"] === "object" &&
+                            typeof $steps["freeturnFailed"].then === "function"
+                          ) {
+                            $steps["freeturnFailed"] = await $steps[
+                              "freeturnFailed"
+                            ];
+                          }
+
+                          $steps["goToPage"] =
+                            $steps.book.data.book_info.id != undefined
+                              ? (() => {
+                                  const actionArgs = {
+                                    destination: (() => {
+                                      try {
+                                        return (
+                                          "https://www.paziresh24.com/factor/" +
+                                          $ctx.query.centerId +
+                                          "/" +
+                                          $steps.book.data.book_info.id
+                                        );
+                                      } catch (e) {
+                                        if (
+                                          e instanceof TypeError ||
+                                          e?.plasmicType ===
+                                            "PlasmicUndefinedDataError"
+                                        ) {
+                                          return undefined;
+                                        }
+                                        throw e;
+                                      }
+                                    })()
+                                  };
+                                  return (({ destination }) => {
+                                    if (
+                                      typeof destination === "string" &&
+                                      destination.startsWith("#")
+                                    ) {
+                                      document
+                                        .getElementById(destination.substr(1))
+                                        .scrollIntoView({ behavior: "smooth" });
+                                    } else {
+                                      __nextRouter?.push(destination);
+                                    }
+                                  })?.apply(null, [actionArgs]);
+                                })()
+                              : undefined;
+                          if (
+                            $steps["goToPage"] != null &&
+                            typeof $steps["goToPage"] === "object" &&
+                            typeof $steps["goToPage"].then === "function"
+                          ) {
+                            $steps["goToPage"] = await $steps["goToPage"];
+                          }
+
+                          $steps["bookingFailed"] =
+                            $steps.book.data.book_info.id == undefined
                               ? (() => {
                                   const actionArgs = {
                                     args: [
@@ -527,49 +661,38 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                             ];
                           }
 
-                          $steps["goToPage"] = true
+                          $steps["hideLoader"] = true
                             ? (() => {
                                 const actionArgs = {
-                                  destination: (() => {
-                                    try {
-                                      return (
-                                        "https://www.paziresh24.com/factor/" +
-                                        $ctx.query.centerId +
-                                        "/" +
-                                        $steps.book.data.book_info.id
-                                      );
-                                    } catch (e) {
-                                      if (
-                                        e instanceof TypeError ||
-                                        e?.plasmicType ===
-                                          "PlasmicUndefinedDataError"
-                                      ) {
-                                        return undefined;
-                                      }
-                                      throw e;
-                                    }
-                                  })()
+                                  variable: {
+                                    objRoot: $state,
+                                    variablePath: ["displayLoader"]
+                                  },
+                                  operation: 0,
+                                  value: false
                                 };
-                                return (({ destination }) => {
-                                  if (
-                                    typeof destination === "string" &&
-                                    destination.startsWith("#")
-                                  ) {
-                                    document
-                                      .getElementById(destination.substr(1))
-                                      .scrollIntoView({ behavior: "smooth" });
-                                  } else {
-                                    __nextRouter?.push(destination);
+                                return (({
+                                  variable,
+                                  value,
+                                  startIndex,
+                                  deleteCount
+                                }) => {
+                                  if (!variable) {
+                                    return;
                                   }
+                                  const { objRoot, variablePath } = variable;
+
+                                  $stateSet(objRoot, variablePath, value);
+                                  return value;
                                 })?.apply(null, [actionArgs]);
                               })()
                             : undefined;
                           if (
-                            $steps["goToPage"] != null &&
-                            typeof $steps["goToPage"] === "object" &&
-                            typeof $steps["goToPage"].then === "function"
+                            $steps["hideLoader"] != null &&
+                            typeof $steps["hideLoader"] === "object" &&
+                            typeof $steps["hideLoader"].then === "function"
                           ) {
-                            $steps["goToPage"] = await $steps["goToPage"];
+                            $steps["hideLoader"] = await $steps["hideLoader"];
                           }
                         }}
                         onClick={async event => {
@@ -642,75 +765,69 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                     );
                   })}
                 </ApiRequest>
-                <ApiRequest
-                  data-plasmic-name={"apiMe"}
-                  data-plasmic-override={overrides.apiMe}
-                  children={null}
-                  className={classNames("__wab_instance", sty.apiMe)}
-                  errorDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__dpmF)}
-                    >
-                      <Icon2Icon
-                        className={classNames(projectcss.all, sty.svg___4Zw2F)}
-                        role={"img"}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__ph4Xp
-                        )}
-                      >
-                        {
-                          "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
-                        }
-                      </div>
-                    </Stack__>
-                  }
-                  loadingDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
-                      className={classNames(projectcss.all, sty.freeBox__afEvn)}
-                    >
-                      <Icon2Icon
-                        className={classNames(projectcss.all, sty.svg__faTzA)}
-                        role={"img"}
-                      />
-
-                      <div
-                        className={classNames(
-                          projectcss.all,
-                          projectcss.__wab_text,
-                          sty.text__uBiup
-                        )}
-                      >
-                        {
-                          "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
-                        }
-                      </div>
-                    </Stack__>
-                  }
-                  method={"GET"}
-                  onError={generateStateOnChangeProp($state, [
-                    "apiMe",
-                    "error"
-                  ])}
-                  onLoading={generateStateOnChangeProp($state, [
-                    "apiMe",
-                    "loading"
-                  ])}
-                  onSuccess={generateStateOnChangeProp($state, [
-                    "apiMe",
-                    "data"
-                  ])}
-                  url={"https://apigw.paziresh24.com/v1/auth/me"}
-                />
               </Stack__>
+              <ApiRequest
+                data-plasmic-name={"apiMe"}
+                data-plasmic-override={overrides.apiMe}
+                children={null}
+                className={classNames("__wab_instance", sty.apiMe)}
+                errorDisplay={
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__dpmF)}
+                  >
+                    <Icon2Icon
+                      className={classNames(projectcss.all, sty.svg___4Zw2F)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__ph4Xp
+                      )}
+                    >
+                      {
+                        "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
+                      }
+                    </div>
+                  </Stack__>
+                }
+                loadingDisplay={
+                  <Stack__
+                    as={"div"}
+                    hasGap={true}
+                    className={classNames(projectcss.all, sty.freeBox__afEvn)}
+                  >
+                    <Icon2Icon
+                      className={classNames(projectcss.all, sty.svg__faTzA)}
+                      role={"img"}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__uBiup
+                      )}
+                    >
+                      {
+                        "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
+                      }
+                    </div>
+                  </Stack__>
+                }
+                method={"GET"}
+                onError={generateStateOnChangeProp($state, ["apiMe", "error"])}
+                onLoading={generateStateOnChangeProp($state, [
+                  "apiMe",
+                  "loading"
+                ])}
+                onSuccess={generateStateOnChangeProp($state, ["apiMe", "data"])}
+                url={"https://apigw.paziresh24.com/v1/auth/me"}
+              />
             </Stack__>
             <Stack__
               as={"div"}
