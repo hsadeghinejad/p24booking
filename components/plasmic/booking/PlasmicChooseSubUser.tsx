@@ -218,18 +218,6 @@ function PlasmicChooseSubUser__RenderFunc(props: {
         initFunc: ({ $props, $state, $queries, $ctx }) => undefined
       },
       {
-        path: "freeturn",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
-        path: "book",
-        type: "private",
-        variableType: "object",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
-      },
-      {
         path: "variable",
         type: "private",
         variableType: "text",
@@ -448,92 +436,64 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                             $steps["freeturn"] = await $steps["freeturn"];
                           }
 
-                          $steps["setFreeturn"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["freeturn"]
-                                  },
-                                  operation: 0,
-                                  value: $steps.freeturn
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
-                          if (
-                            $steps["setFreeturn"] != null &&
-                            typeof $steps["setFreeturn"] === "object" &&
-                            typeof $steps["setFreeturn"].then === "function"
-                          ) {
-                            $steps["setFreeturn"] = await $steps["setFreeturn"];
-                          }
-
-                          $steps["book"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  args: [
-                                    "POST",
-                                    "https://apigw.paziresh24.com/booking/v2/book",
-                                    undefined,
-                                    (() => {
-                                      try {
-                                        return {
-                                          request_code:
-                                            $state.freeturn.result.request_code,
-                                          center_id: $ctx.query.centerId,
-                                          server_id:
-                                            $state.apiFullprofile.data.data.centers.find(
-                                              item =>
-                                                item.id === $ctx.query.centerId
-                                            )?.server_id,
-                                          is_webview: "0",
-                                          first_name: $state.selectedUser.name,
-                                          last_name: $state.selectedUser.family,
-                                          gender: $state.selectedUser.gender,
-                                          cell: $state.selectedUser.cell,
-                                          selected_user_id:
-                                            $state.selectedUser.id,
-                                          is_foreigner:
-                                            $state.selectedUser.national_code ==
-                                            ""
-                                              ? false
-                                              : true,
-                                          online_channel: $state.messenger,
-                                          national_code:
-                                            $state.selectedUser.national_code
-                                        };
-                                      } catch (e) {
-                                        if (
-                                          e instanceof TypeError ||
-                                          e?.plasmicType ===
-                                            "PlasmicUndefinedDataError"
-                                        ) {
-                                          return undefined;
+                          $steps["book"] =
+                            $steps.freeturn.data.result.request_code !=
+                            undefined
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "POST",
+                                      "https://apigw.paziresh24.com/booking/v2/book",
+                                      undefined,
+                                      (() => {
+                                        try {
+                                          return {
+                                            request_code:
+                                              $steps.freeturn.data.result
+                                                .request_code,
+                                            center_id: $ctx.query.centerId,
+                                            server_id:
+                                              $state.apiFullprofile.data.data.centers.find(
+                                                item =>
+                                                  item.id ===
+                                                  $ctx.query.centerId
+                                              )?.server_id,
+                                            is_webview: 0,
+                                            first_name:
+                                              $state.selectedUser.name,
+                                            last_name:
+                                              $state.selectedUser.family,
+                                            gender: $state.selectedUser.gender,
+                                            cell: $state.selectedUser.cell,
+                                            selected_user_id:
+                                              $state.apiMe.data.users[0].id,
+                                            is_foreigner:
+                                              $state.selectedUser
+                                                .national_code == ""
+                                                ? true
+                                                : false,
+                                            online_channel: messenger,
+                                            national_code:
+                                              $state.selectedUser.national_code
+                                          };
+                                        } catch (e) {
+                                          if (
+                                            e instanceof TypeError ||
+                                            e?.plasmicType ===
+                                              "PlasmicUndefinedDataError"
+                                          ) {
+                                            return undefined;
+                                          }
+                                          throw e;
                                         }
-                                        throw e;
-                                      }
-                                    })()
-                                  ]
-                                };
-                                return $globalActions[
-                                  "Fragment.apiRequest"
-                                ]?.apply(null, [...actionArgs.args]);
-                              })()
-                            : undefined;
+                                      })()
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "Fragment.apiRequest"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
                           if (
                             $steps["book"] != null &&
                             typeof $steps["book"] === "object" &&
@@ -542,38 +502,29 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                             $steps["book"] = await $steps["book"];
                           }
 
-                          $steps["updateBook"] = true
-                            ? (() => {
-                                const actionArgs = {
-                                  variable: {
-                                    objRoot: $state,
-                                    variablePath: ["book"]
-                                  },
-                                  operation: 0,
-                                  value: $steps.book
-                                };
-                                return (({
-                                  variable,
-                                  value,
-                                  startIndex,
-                                  deleteCount
-                                }) => {
-                                  if (!variable) {
-                                    return;
-                                  }
-                                  const { objRoot, variablePath } = variable;
-
-                                  $stateSet(objRoot, variablePath, value);
-                                  return value;
-                                })?.apply(null, [actionArgs]);
-                              })()
-                            : undefined;
+                          $steps["bookingFailed"] =
+                            $steps.freeturn.data.result.request_code ==
+                            undefined
+                              ? (() => {
+                                  const actionArgs = {
+                                    args: [
+                                      "error",
+                                      "\u062b\u0628\u062a \u0646\u0648\u0628\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
+                                    ]
+                                  };
+                                  return $globalActions[
+                                    "plasmic-antd5-config-provider.showNotification"
+                                  ]?.apply(null, [...actionArgs.args]);
+                                })()
+                              : undefined;
                           if (
-                            $steps["updateBook"] != null &&
-                            typeof $steps["updateBook"] === "object" &&
-                            typeof $steps["updateBook"].then === "function"
+                            $steps["bookingFailed"] != null &&
+                            typeof $steps["bookingFailed"] === "object" &&
+                            typeof $steps["bookingFailed"].then === "function"
                           ) {
-                            $steps["updateBook"] = await $steps["updateBook"];
+                            $steps["bookingFailed"] = await $steps[
+                              "bookingFailed"
+                            ];
                           }
 
                           $steps["goToPage"] = true
@@ -583,9 +534,9 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                                     try {
                                       return (
                                         "https://www.paziresh24.com/factor/" +
-                                        $state.book.center_id +
+                                        $ctx.query.centerId +
                                         "/" +
-                                        $state.book.id
+                                        $steps.book.data.book_info.id
                                       );
                                     } catch (e) {
                                       if (
