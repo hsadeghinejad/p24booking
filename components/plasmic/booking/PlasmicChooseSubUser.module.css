@@ -228,6 +228,7 @@
   z-index: 1;
   flex-shrink: 1;
   background: var(--token-cjVB4i6JVY6v);
+  cursor: wait;
   min-width: 0;
   min-height: 0;
   border-radius: 8px;
