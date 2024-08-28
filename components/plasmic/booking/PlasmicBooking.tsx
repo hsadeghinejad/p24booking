@@ -2511,50 +2511,6 @@ function PlasmicBooking__RenderFunc(props: {
                         ];
                       }
 
-                      $steps["goToPayment"] =
-                        $steps.consultPayment.data.url != undefined
-                          ? (() => {
-                              const actionArgs = {
-                                destination: (() => {
-                                  try {
-                                    return (
-                                      "https://www.paziresh24.com" +
-                                      $steps.consultPayment.data.url
-                                    );
-                                  } catch (e) {
-                                    if (
-                                      e instanceof TypeError ||
-                                      e?.plasmicType ===
-                                        "PlasmicUndefinedDataError"
-                                    ) {
-                                      return undefined;
-                                    }
-                                    throw e;
-                                  }
-                                })()
-                              };
-                              return (({ destination }) => {
-                                if (
-                                  typeof destination === "string" &&
-                                  destination.startsWith("#")
-                                ) {
-                                  document
-                                    .getElementById(destination.substr(1))
-                                    .scrollIntoView({ behavior: "smooth" });
-                                } else {
-                                  __nextRouter?.push(destination);
-                                }
-                              })?.apply(null, [actionArgs]);
-                            })()
-                          : undefined;
-                      if (
-                        $steps["goToPayment"] != null &&
-                        typeof $steps["goToPayment"] === "object" &&
-                        typeof $steps["goToPayment"].then === "function"
-                      ) {
-                        $steps["goToPayment"] = await $steps["goToPayment"];
-                      }
-
                       $steps["updateShowPaymentLoader"] = true
                         ? (() => {
                             const actionArgs = {
@@ -2590,6 +2546,44 @@ function PlasmicBooking__RenderFunc(props: {
                         $steps["updateShowPaymentLoader"] = await $steps[
                           "updateShowPaymentLoader"
                         ];
+                      }
+
+                      $steps["goToPayment"] =
+                        $steps.consultPayment.data.url != undefined
+                          ? (() => {
+                              const actionArgs = {
+                                args: [
+                                  (() => {
+                                    try {
+                                      return (
+                                        "https://www.paziresh24.com" +
+                                        $steps.consultPayment.data.url
+                                      );
+                                    } catch (e) {
+                                      if (
+                                        e instanceof TypeError ||
+                                        e?.plasmicType ===
+                                          "PlasmicUndefinedDataError"
+                                      ) {
+                                        return undefined;
+                                      }
+                                      throw e;
+                                    }
+                                  })()
+                                ]
+                              };
+                              return $globalActions["Hamdast.openLink"]?.apply(
+                                null,
+                                [...actionArgs.args]
+                              );
+                            })()
+                          : undefined;
+                      if (
+                        $steps["goToPayment"] != null &&
+                        typeof $steps["goToPayment"] === "object" &&
+                        typeof $steps["goToPayment"].then === "function"
+                      ) {
+                        $steps["goToPayment"] = await $steps["goToPayment"];
                       }
                     }}
                     size={"compact"}
