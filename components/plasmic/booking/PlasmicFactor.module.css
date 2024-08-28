@@ -764,6 +764,7 @@
   max-width: 100%;
   text-align: justify;
   font-size: 12px;
+  white-space: pre-wrap;
   min-width: 0;
 }
 .text__kVey {

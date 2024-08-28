@@ -240,13 +240,55 @@ function PlasmicChooseSubUser__RenderFunc(props: {
         path: "messenger",
         type: "private",
         variableType: "text",
-        initFunc: ({ $props, $state, $queries, $ctx }) => ""
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return $state.defaultMessenger;
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       },
       {
         path: "displayLoader",
         type: "private",
         variableType: "boolean",
         initFunc: ({ $props, $state, $queries, $ctx }) => false
+      },
+      {
+        path: "defaultMessenger",
+        type: "private",
+        variableType: "text",
+        initFunc: ({ $props, $state, $queries, $ctx }) =>
+          (() => {
+            try {
+              return (() => {
+                return ["whatsapp", "eitaa"].filter(type =>
+                  $state.apiFullprofile.data.data.online_visit_channel_types.includes(
+                    type
+                  )
+                ).length === 1
+                  ? $state.apiFullprofile.data.data.online_visit_channel_types.find(
+                      type => ["whatsapp", "eitaa"].includes(type)
+                    )
+                  : "";
+              })();
+            } catch (e) {
+              if (
+                e instanceof TypeError ||
+                e?.plasmicType === "PlasmicUndefinedDataError"
+              ) {
+                return undefined;
+              }
+              throw e;
+            }
+          })()
       }
     ],
     [$props, $ctx, $refs]
@@ -453,6 +495,19 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                           "__wab_instance",
                           sty.subUserCard
                         )}
+                        displayMessengers={(() => {
+                          try {
+                            return $state.defaultMessenger == "";
+                          } catch (e) {
+                            if (
+                              e instanceof TypeError ||
+                              e?.plasmicType === "PlasmicUndefinedDataError"
+                            ) {
+                              return false;
+                            }
+                            throw e;
+                          }
+                        })()}
                         key={currentIndex}
                         onBook={async messenger => {
                           const $steps = {};
@@ -888,10 +943,15 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                   "apiProvider",
                   "loading"
                 ])}
-                onSuccess={generateStateOnChangeProp($state, [
-                  "apiProvider",
-                  "data"
-                ])}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiProvider",
+                    "data"
+                  ]).apply(null, eventArgs);
+                  (async data => {
+                    const $steps = {};
+                  }).apply(null, eventArgs);
+                }}
                 params={(() => {
                   try {
                     return {
@@ -970,10 +1030,167 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                     "apiFullprofile",
                     "loading"
                   ])}
-                  onSuccess={generateStateOnChangeProp($state, [
-                    "apiFullprofile",
-                    "data"
-                  ])}
+                  onSuccess={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiFullprofile",
+                      "data"
+                    ]).apply(null, eventArgs);
+                    (async data => {
+                      const $steps = {};
+
+                      $steps["freeturn"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "POST",
+                                "https://apigw.paziresh24.com/booking/v2/getFreeTurn",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      center_id: $ctx.query.centerId,
+                                      service_id: $ctx.query.serviceId,
+                                      user_center_id:
+                                        $state.apiFullprofile.data.data.centers.find(
+                                          item =>
+                                            item.id === $ctx.query.centerId
+                                        )?.user_center_id,
+                                      type: "web",
+                                      terminal_id: ""
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["freeturn"] != null &&
+                        typeof $steps["freeturn"] === "object" &&
+                        typeof $steps["freeturn"].then === "function"
+                      ) {
+                        $steps["freeturn"] = await $steps["freeturn"];
+                      }
+
+                      $steps["book"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                "POST",
+                                "https://apigw.paziresh24.com/booking/v2/book",
+                                undefined,
+                                (() => {
+                                  try {
+                                    return {
+                                      request_code:
+                                        $steps.freeturn.data.result
+                                          .request_code,
+                                      center_id: $ctx.query.centerId,
+                                      server_id:
+                                        $state.apiFullprofile.data.data.centers.find(
+                                          item =>
+                                            item.id === $ctx.query.centerId
+                                        )?.server_id,
+                                      is_webview: 0,
+                                      first_name: $state.apiMe.data.name,
+                                      last_name: $state.apiMe.data.family,
+                                      gender: $state.apiMe.data.gender,
+                                      cell: $state.apiMe.data.cell,
+                                      selected_user_id:
+                                        $state.apiMe.data.users[0].id,
+                                      is_foreigner:
+                                        $state.apiMe.data.national_code == ""
+                                          ? true
+                                          : false,
+                                      national_code:
+                                        $state.apiMe.data.national_code
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Fragment.apiRequest"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["book"] != null &&
+                        typeof $steps["book"] === "object" &&
+                        typeof $steps["book"].then === "function"
+                      ) {
+                        $steps["book"] = await $steps["book"];
+                      }
+
+                      $steps["gotoFactor"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              destination: (() => {
+                                try {
+                                  return (
+                                    "https://www.paziresh24.com/factor/" +
+                                    $ctx.query.centerId +
+                                    "/" +
+                                    $steps.book.data.book_info.id
+                                  );
+                                } catch (e) {
+                                  if (
+                                    e instanceof TypeError ||
+                                    e?.plasmicType ===
+                                      "PlasmicUndefinedDataError"
+                                  ) {
+                                    return undefined;
+                                  }
+                                  throw e;
+                                }
+                              })()
+                            };
+                            return (({ destination }) => {
+                              if (
+                                typeof destination === "string" &&
+                                destination.startsWith("#")
+                              ) {
+                                document
+                                  .getElementById(destination.substr(1))
+                                  .scrollIntoView({ behavior: "smooth" });
+                              } else {
+                                __nextRouter?.push(destination);
+                              }
+                            })?.apply(null, [actionArgs]);
+                          })()
+                        : undefined;
+                      if (
+                        $steps["gotoFactor"] != null &&
+                        typeof $steps["gotoFactor"] === "object" &&
+                        typeof $steps["gotoFactor"].then === "function"
+                      ) {
+                        $steps["gotoFactor"] = await $steps["gotoFactor"];
+                      }
+                    }).apply(null, eventArgs);
+                  }}
                   url={(() => {
                     try {
                       return (

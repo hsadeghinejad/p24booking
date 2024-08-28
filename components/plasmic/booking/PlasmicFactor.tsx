@@ -1687,6 +1687,13 @@ function PlasmicFactor__RenderFunc(props: {
                             projectcss.__wab_text,
                             sty.text__w4DnZ
                           )}
+                          style={{
+                            display: "-webkit-inline-box",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 2,
+                            overflow: "hidden",
+                            textOverflow: "ellipsis"
+                          }}
                         >
                           <React.Fragment>
                             {(() => {

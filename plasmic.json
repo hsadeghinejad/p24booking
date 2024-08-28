@@ -77,8 +77,7 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": [],
-      "jsBundleThemes": []
+      "customFunctions": []
     },
     {
       "projectId": "oBJtsp5RgVpcN6KCrDTuQT",
@@ -710,7 +709,8 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "YUiM7yqBWAqsh8KSnrdj7",
@@ -932,6 +932,20 @@
           "cssFilePath": "plasmic/booking/PlasmicSubUserCard.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "a2O4w__PND9a",
+          "name": "Booking",
+          "type": "managed",
+          "projectId": "w8Roqs5CeKXUVajBnjnyHA",
+          "renderModuleFilePath": "plasmic/booking/PlasmicBooking.tsx",
+          "importSpec": {
+            "modulePath": "../src/pages/booking-2/[slug].tsx"
+          },
+          "cssFilePath": "plasmic/booking/PlasmicBooking.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/booking-2/[slug]"
         }
       ],
       "icons": [
@@ -954,6 +968,16 @@
           "id": "iQMfo1a3dZrA",
           "name": "Icon2Icon",
           "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Icon2.tsx"
+        },
+        {
+          "id": "s5w7iAz6OhSA",
+          "name": "Icon3Icon",
+          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Icon3.tsx"
+        },
+        {
+          "id": "QUC8EUW8HzWa",
+          "name": "Icon4Icon",
+          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Icon4.tsx"
         }
       ],
       "images": [
@@ -991,6 +1015,36 @@
           "id": "YA45N6POkpEA",
           "name": "image 5",
           "filePath": "../public/plasmic/booking/images/image5.svg"
+        },
+        {
+          "id": "qo7SjeAwaDEp",
+          "name": "image 6",
+          "filePath": "../public/plasmic/booking/images/image6.svg"
+        },
+        {
+          "id": "GO6trF12sa5C",
+          "name": "image 7",
+          "filePath": "../public/plasmic/booking/images/image7.svg"
+        },
+        {
+          "id": "46SemVBlVrVY",
+          "name": "image 8",
+          "filePath": "../public/plasmic/booking/images/image8.svg"
+        },
+        {
+          "id": "SMm8hc5rtr61",
+          "name": "image 9",
+          "filePath": "../public/plasmic/booking/images/image9.svg"
+        },
+        {
+          "id": "2l5yivtdBasz",
+          "name": "image 10",
+          "filePath": "../public/plasmic/booking/images/image10.svg"
+        },
+        {
+          "id": "rKb4TtCNf_6B",
+          "name": "image 11",
+          "filePath": "../public/plasmic/booking/images/image11.svg"
         }
       ],
       "indirect": false,

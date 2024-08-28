@@ -91,12 +91,14 @@ export type PlasmicSubUserCard__ArgsType = {
   subUser?: any;
   onBook?: (messenger: string) => void;
   onClick?: (event: any) => void;
+  displayMessengers?: boolean;
 };
 type ArgPropType = keyof PlasmicSubUserCard__ArgsType;
 export const PlasmicSubUserCard__ArgProps = new Array<ArgPropType>(
   "subUser",
   "onBook",
-  "onClick"
+  "onClick",
+  "displayMessengers"
 );
 
 export type PlasmicSubUserCard__OverridesType = {
@@ -107,6 +109,7 @@ export interface DefaultSubUserCardProps {
   subUser?: any;
   onBook?: (messenger: string) => void;
   onClick?: (event: any) => void;
+  displayMessengers?: boolean;
   selected?: SingleBooleanChoiceArg<"selected">;
   className?: string;
 }
@@ -128,7 +131,16 @@ function PlasmicSubUserCard__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {
+          displayMessengers: false
+        },
+        props.args
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -244,126 +256,144 @@ function PlasmicSubUserCard__RenderFunc(props: {
           </div>
         </div>
       </div>
-      <Stack__
-        as={"div"}
-        hasGap={true}
-        className={classNames(projectcss.all, sty.freeBox__xVs4S, {
-          [sty.freeBoxselected__xVs4SpnXkH]: hasVariant(
-            $state,
-            "selected",
-            "selected"
-          )
-        })}
-      >
-        <div
-          className={classNames(
-            projectcss.all,
-            projectcss.__wab_text,
-            sty.text__gbHGu
-          )}
-        >
-          {
-            "\u0627\u0632 \u06a9\u062f\u0627\u0645 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0645\u06cc\u06a9\u0646\u06cc\u062f\u061f"
-          }
-        </div>
+      {(
+        hasVariant($state, "selected", "selected")
+          ? (() => {
+              try {
+                return $props.displayMessengers;
+              } catch (e) {
+                if (
+                  e instanceof TypeError ||
+                  e?.plasmicType === "PlasmicUndefinedDataError"
+                ) {
+                  return true;
+                }
+                throw e;
+              }
+            })()
+          : true
+      ) ? (
         <Stack__
           as={"div"}
           hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__kj9Hl)}
+          className={classNames(projectcss.all, sty.freeBox__xVs4S, {
+            [sty.freeBoxselected__xVs4SpnXkH]: hasVariant(
+              $state,
+              "selected",
+              "selected"
+            )
+          })}
         >
-          <Button
-            children2={
-              <React.Fragment>
-                <WhatsappIcon
-                  className={classNames(projectcss.all, sty.svg__vApD)}
-                  role={"img"}
-                />
-
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__sFwYa
-                  )}
-                >
-                  {"\u0648\u0627\u062a\u0633\u0627\u067e"}
-                </div>
-              </React.Fragment>
+          <div
+            className={classNames(
+              projectcss.all,
+              projectcss.__wab_text,
+              sty.text__gbHGu
+            )}
+          >
+            {
+              "\u0627\u0632 \u06a9\u062f\u0627\u0645 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0645\u06cc\u06a9\u0646\u06cc\u062f\u061f"
             }
-            className={classNames("__wab_instance", sty.button__p8D1U)}
-            color={"sand"}
-            onClick={async event => {
-              const $steps = {};
+          </div>
+          <Stack__
+            as={"div"}
+            hasGap={true}
+            className={classNames(projectcss.all, sty.freeBox__kj9Hl)}
+          >
+            <Button
+              children2={
+                <React.Fragment>
+                  <WhatsappIcon
+                    className={classNames(projectcss.all, sty.svg__vApD)}
+                    role={"img"}
+                  />
 
-              $steps["runOnBook"] = true
-                ? (() => {
-                    const actionArgs = {
-                      eventRef: $props["onBook"],
-                      args: ["whatsapp"]
-                    };
-                    return (({ eventRef, args }) => {
-                      return eventRef?.(...(args ?? []));
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runOnBook"] != null &&
-                typeof $steps["runOnBook"] === "object" &&
-                typeof $steps["runOnBook"].then === "function"
-              ) {
-                $steps["runOnBook"] = await $steps["runOnBook"];
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__sFwYa
+                    )}
+                  >
+                    {"\u0648\u0627\u062a\u0633\u0627\u067e"}
+                  </div>
+                </React.Fragment>
               }
-            }}
-            outline={true}
-          />
+              className={classNames("__wab_instance", sty.button__p8D1U)}
+              color={"sand"}
+              onClick={async event => {
+                const $steps = {};
 
-          <Button
-            children2={
-              <React.Fragment>
-                <EitaaIcon
-                  className={classNames(projectcss.all, sty.svg__as81X)}
-                  role={"img"}
-                />
+                $steps["runOnBook"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        eventRef: $props["onBook"],
+                        args: ["whatsapp"]
+                      };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runOnBook"] != null &&
+                  typeof $steps["runOnBook"] === "object" &&
+                  typeof $steps["runOnBook"].then === "function"
+                ) {
+                  $steps["runOnBook"] = await $steps["runOnBook"];
+                }
+              }}
+              outline={true}
+            />
 
-                <div
-                  className={classNames(
-                    projectcss.all,
-                    projectcss.__wab_text,
-                    sty.text__hBmL
-                  )}
-                >
-                  {"\u0627\u06cc\u062a\u0627"}
-                </div>
-              </React.Fragment>
-            }
-            className={classNames("__wab_instance", sty.button___9CVqn)}
-            color={"sand"}
-            onClick={async event => {
-              const $steps = {};
+            <Button
+              children2={
+                <React.Fragment>
+                  <EitaaIcon
+                    className={classNames(projectcss.all, sty.svg__as81X)}
+                    role={"img"}
+                  />
 
-              $steps["runOnBook"] = true
-                ? (() => {
-                    const actionArgs = {
-                      eventRef: $props["onBook"],
-                      args: ["eitaa"]
-                    };
-                    return (({ eventRef, args }) => {
-                      return eventRef?.(...(args ?? []));
-                    })?.apply(null, [actionArgs]);
-                  })()
-                : undefined;
-              if (
-                $steps["runOnBook"] != null &&
-                typeof $steps["runOnBook"] === "object" &&
-                typeof $steps["runOnBook"].then === "function"
-              ) {
-                $steps["runOnBook"] = await $steps["runOnBook"];
+                  <div
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.__wab_text,
+                      sty.text__hBmL
+                    )}
+                  >
+                    {"\u0627\u06cc\u062a\u0627"}
+                  </div>
+                </React.Fragment>
               }
-            }}
-            outline={true}
-          />
+              className={classNames("__wab_instance", sty.button___9CVqn)}
+              color={"sand"}
+              onClick={async event => {
+                const $steps = {};
+
+                $steps["runOnBook"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        eventRef: $props["onBook"],
+                        args: ["eitaa"]
+                      };
+                      return (({ eventRef, args }) => {
+                        return eventRef?.(...(args ?? []));
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["runOnBook"] != null &&
+                  typeof $steps["runOnBook"] === "object" &&
+                  typeof $steps["runOnBook"].then === "function"
+                ) {
+                  $steps["runOnBook"] = await $steps["runOnBook"];
+                }
+              }}
+              outline={true}
+            />
+          </Stack__>
         </Stack__>
-      </Stack__>
+      ) : null}
     </Stack__>
   ) as React.ReactElement | null;
 }

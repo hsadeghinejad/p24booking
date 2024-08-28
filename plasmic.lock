@@ -2,7 +2,7 @@
   "projects": [
     {
       "projectId": "caTPwKxj5ZrD9LQ7DMdK4Z",
-      "version": "3.36.0",
+      "version": "3.37.0",
       "dependencies": {},
       "lang": "ts",
       "fileLocks": [
@@ -320,7 +320,7 @@
         "h9Dbk9ygddw7UVEq1NNhKi": "6.0.1",
         "oBJtsp5RgVpcN6KCrDTuQT": "1.3.0",
         "sqPBLwEBBKHA2WDuGb17eV": "0.12.0",
-        "caTPwKxj5ZrD9LQ7DMdK4Z": "3.36.0",
+        "caTPwKxj5ZrD9LQ7DMdK4Z": "3.37.0",
         "YUiM7yqBWAqsh8KSnrdj7": "0.29.0",
         "ohDidvG9XsCeFumugENU3J": "6.25.0"
       },
@@ -339,12 +339,12 @@
         {
           "type": "renderModule",
           "assetId": "_yahxnQi1d3a",
-          "checksum": "a75952e15ef9c06e6b4f9acdee7825e0"
+          "checksum": "c6ae41fd415f75709db761dda6146588"
         },
         {
           "type": "cssRules",
           "assetId": "_yahxnQi1d3a",
-          "checksum": "a75952e15ef9c06e6b4f9acdee7825e0"
+          "checksum": "c6ae41fd415f75709db761dda6146588"
         },
         {
           "type": "icon",
@@ -374,12 +374,12 @@
         {
           "type": "renderModule",
           "assetId": "vitBSaUD2KOG",
-          "checksum": "f20fbd2163d43625d4f8e2245c0bbce1"
+          "checksum": "c0ad67b7a6d1e1fc8b132ef3634c9f4a"
         },
         {
           "type": "cssRules",
           "assetId": "vitBSaUD2KOG",
-          "checksum": "f20fbd2163d43625d4f8e2245c0bbce1"
+          "checksum": "c0ad67b7a6d1e1fc8b132ef3634c9f4a"
         },
         {
           "type": "icon",
@@ -389,12 +389,12 @@
         {
           "type": "renderModule",
           "assetId": "lj052EBNJq5u",
-          "checksum": "f32e03596575b5f2e8178c3633a9b08c"
+          "checksum": "56b55fb0fd1bb28156b66f85602ef228"
         },
         {
           "type": "cssRules",
           "assetId": "lj052EBNJq5u",
-          "checksum": "f32e03596575b5f2e8178c3633a9b08c"
+          "checksum": "56b55fb0fd1bb28156b66f85602ef228"
         },
         {
           "type": "image",
@@ -409,12 +409,12 @@
         {
           "type": "renderModule",
           "assetId": "D8nfHqzg7emF",
-          "checksum": "a86c8b18f73736ad3444fd49fe7ea88b"
+          "checksum": "93e39e484aa3a6468760f304995caf0a"
         },
         {
           "type": "cssRules",
           "assetId": "D8nfHqzg7emF",
-          "checksum": "a86c8b18f73736ad3444fd49fe7ea88b"
+          "checksum": "93e39e484aa3a6468760f304995caf0a"
         },
         {
           "type": "image",
@@ -435,6 +435,56 @@
           "assetId": "w8Roqs5CeKXUVajBnjnyHA",
           "type": "projectCss",
           "checksum": "4ec94fd1440be8abeb93d52f8853fa15"
+        },
+        {
+          "type": "renderModule",
+          "assetId": "a2O4w__PND9a",
+          "checksum": "a9deb4898fc069b448ebd6f4889a8f5f"
+        },
+        {
+          "type": "cssRules",
+          "assetId": "a2O4w__PND9a",
+          "checksum": "a9deb4898fc069b448ebd6f4889a8f5f"
+        },
+        {
+          "type": "icon",
+          "assetId": "s5w7iAz6OhSA",
+          "checksum": "f36ce783013d609c1ad360a0219cf162"
+        },
+        {
+          "type": "icon",
+          "assetId": "QUC8EUW8HzWa",
+          "checksum": "ece2082c67a84dac85d547fe9f40c4c6"
+        },
+        {
+          "type": "image",
+          "assetId": "qo7SjeAwaDEp",
+          "checksum": "d434c957e5780bddc0fad0753aae9132"
+        },
+        {
+          "type": "image",
+          "assetId": "GO6trF12sa5C",
+          "checksum": "490685492b18685fb1caa97d0491947b"
+        },
+        {
+          "type": "image",
+          "assetId": "46SemVBlVrVY",
+          "checksum": "ee06c5dfffb0f83fa34d362b49d2205a"
+        },
+        {
+          "type": "image",
+          "assetId": "SMm8hc5rtr61",
+          "checksum": "9e68203cf607140f5b1667b63377f85e"
+        },
+        {
+          "type": "image",
+          "assetId": "2l5yivtdBasz",
+          "checksum": "a85d59bbea88c072085e41c24b2503dd"
+        },
+        {
+          "type": "image",
+          "assetId": "rKb4TtCNf_6B",
+          "checksum": "27e605afaac239603b0f0266bc7a210f"
         }
       ],
       "codegenVersion": "0.0.1"
