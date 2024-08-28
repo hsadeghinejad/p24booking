@@ -70,6 +70,8 @@ import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 
+import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
+
 import "@plasmicapp/react-web/lib/plasmic.css";
 
 import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
@@ -290,6 +292,10 @@ function PlasmicBooking__RenderFunc(props: {
     $ctx,
     $queries: {},
     $refs
+  });
+
+  const globalVariants = ensureGlobalVariants({
+    screen: useScreenVariantsbr2UhI7UlpvR()
   });
 
   return (
@@ -1018,9 +1024,13 @@ function PlasmicBooking__RenderFunc(props: {
                                 return (
                                   "شماره نظام پزشکی <b>" +
                                   $state.stateFullprofile.data.medical_code +
-                                  "</b> | با <b>" +
-                                  $state.stateFullprofile.data.experience +
-                                  "</b> سال تجربه"
+                                  "</b>" +
+                                  ($state.stateFullprofile.data.experience !=
+                                  undefined
+                                    ? " | با <b>" +
+                                      $state.stateFullprofile.data.experience +
+                                      "</b> سال تجربه"
+                                    : "")
                                 );
                               } catch (e) {
                                 if (
@@ -1597,12 +1607,20 @@ function PlasmicBooking__RenderFunc(props: {
                     <PlasmicImg__
                       alt={""}
                       className={classNames(sty.img__bvPFm)}
-                      displayHeight={"64px"}
+                      displayHeight={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? "40px"
+                          : "64px"
+                      }
                       displayMaxHeight={"none"}
                       displayMaxWidth={"100%"}
                       displayMinHeight={"0"}
                       displayMinWidth={"0"}
-                      displayWidth={"64px"}
+                      displayWidth={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? "40px"
+                          : "64px"
+                      }
                       loading={"lazy"}
                       src={{
                         src: "/plasmic/booking/images/image10.svg",
@@ -1650,12 +1668,20 @@ function PlasmicBooking__RenderFunc(props: {
                     <PlasmicImg__
                       alt={""}
                       className={classNames(sty.img__efmAb)}
-                      displayHeight={"64px"}
+                      displayHeight={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? "40px"
+                          : "64px"
+                      }
                       displayMaxHeight={"none"}
                       displayMaxWidth={"100%"}
                       displayMinHeight={"0"}
                       displayMinWidth={"0"}
-                      displayWidth={"64px"}
+                      displayWidth={
+                        hasVariant(globalVariants, "screen", "mobileOnly")
+                          ? "40px"
+                          : "64px"
+                      }
                       loading={"lazy"}
                       src={{
                         src: "/plasmic/booking/images/image11.svg",
