@@ -68,8 +68,8 @@ import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css";
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicTextInput.module.css"; // plasmic-import: _yahxnQi1d3a/css
 
-import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: KCw0ExuGEz0B/icon
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: I5AceigUynU8/icon
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: KCw0ExuGEz0B/icon
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: I5AceigUynU8/icon
 
 createPlasmicElementProxy;
 
@@ -114,10 +114,6 @@ export type PlasmicTextInput__ArgsType = {
     | "email"
     | "tel";
   autoFocus?: boolean;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
 };
 type ArgPropType = keyof PlasmicTextInput__ArgsType;
 export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
@@ -131,11 +127,7 @@ export const PlasmicTextInput__ArgProps = new Array<ArgPropType>(
   "aria-labelledby",
   "onChange",
   "type",
-  "autoFocus",
-  "aria-label",
-  "aria-labelledby",
-  "aria-label",
-  "aria-labelledby"
+  "autoFocus"
 );
 
 export type PlasmicTextInput__OverridesType = {
@@ -164,10 +156,6 @@ export interface DefaultTextInputProps extends pp.BaseTextInputProps {
     | "email"
     | "tel";
   autoFocus?: boolean;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
-  "aria-label"?: string;
-  "aria-labelledby"?: string;
   color?: SingleChoiceArg<"dark">;
 }
 
@@ -314,7 +302,7 @@ function PlasmicTextInput__RenderFunc(props: {
       >
         {renderPlasmicSlot({
           defaultContents: (
-            <SearchsvgIcon
+            <SearchSvgIcon
               className={classNames(projectcss.all, sty.svg__uGooy)}
               role={"img"}
             />
@@ -378,7 +366,7 @@ function PlasmicTextInput__RenderFunc(props: {
       >
         {renderPlasmicSlot({
           defaultContents: (
-            <ChecksvgIcon
+            <CheckSvgIcon
               className={classNames(projectcss.all, sty.svg__uf2I)}
               role={"img"}
             />

@@ -957,13 +957,13 @@
         },
         {
           "id": "KCw0ExuGEz0B",
-          "name": "SearchsvgIcon",
-          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Searchsvg.tsx"
+          "name": "SearchSvgIcon",
+          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__SearchSvg.tsx"
         },
         {
           "id": "I5AceigUynU8",
-          "name": "ChecksvgIcon",
-          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__Checksvg.tsx"
+          "name": "CheckSvgIcon",
+          "moduleFilePath": "plasmic/booking/icons/PlasmicIcon__CheckSvg.tsx"
         },
         {
           "id": "iQMfo1a3dZrA",
@@ -985,12 +985,12 @@
         {
           "id": "YkgFi_uhDLjT",
           "name": "walk.png",
-          "filePath": "../public/plasmic/booking/images/walkpng.png"
+          "filePath": "../public/plasmic/booking/images/walkPng.png"
         },
         {
           "id": "2td-T50uyt2F",
           "name": "money-back-guarantee.png",
-          "filePath": "../public/plasmic/booking/images/moneyBackGuaranteepng.png"
+          "filePath": "../public/plasmic/booking/images/moneyBackGuaranteePng.png"
         },
         {
           "id": "ohuniR1aQium",
@@ -1046,6 +1046,11 @@
           "id": "rKb4TtCNf_6B",
           "name": "image 11",
           "filePath": "../public/plasmic/booking/images/image11.svg"
+        },
+        {
+          "id": "9cHxCBMUjW8n",
+          "name": "image 12",
+          "filePath": "../public/plasmic/booking/images/image12.svg"
         }
       ],
       "indirect": false,

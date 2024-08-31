@@ -77,8 +77,8 @@ import sty from "./PlasmicFactor.module.css"; // plasmic-import: vitBSaUD2KOG/cs
 
 import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: iQMfo1a3dZrA/icon
 import IconIcon from "./icons/PlasmicIcon__Icon"; // plasmic-import: PgjN1jR1k265/icon
-import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: KCw0ExuGEz0B/icon
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: I5AceigUynU8/icon
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: KCw0ExuGEz0B/icon
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: I5AceigUynU8/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 

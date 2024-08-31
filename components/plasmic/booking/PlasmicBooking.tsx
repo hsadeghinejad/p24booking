@@ -82,8 +82,8 @@ import sty from "./PlasmicBooking.module.css"; // plasmic-import: a2O4w__PND9a/c
 import EitaaIcon from "../fragment_icons/icons/PlasmicIcon__Eitaa"; // plasmic-import: qxWwW7vbw7na/icon
 import WhatsappIcon from "../fragment_icons/icons/PlasmicIcon__Whatsapp"; // plasmic-import: oob3UzcKBsd_/icon
 import Icon4Icon from "./icons/PlasmicIcon__Icon4"; // plasmic-import: QUC8EUW8HzWa/icon
-import SearchsvgIcon from "./icons/PlasmicIcon__Searchsvg"; // plasmic-import: KCw0ExuGEz0B/icon
-import ChecksvgIcon from "./icons/PlasmicIcon__Checksvg"; // plasmic-import: I5AceigUynU8/icon
+import SearchSvgIcon from "./icons/PlasmicIcon__SearchSvg"; // plasmic-import: KCw0ExuGEz0B/icon
+import CheckSvgIcon from "./icons/PlasmicIcon__CheckSvg"; // plasmic-import: I5AceigUynU8/icon
 import ChevronRightIcon from "../fragment_icons/icons/PlasmicIcon__ChevronRight"; // plasmic-import: GHdF3hS-oP_3/icon
 import ChevronLeftIcon from "../fragment_icons/icons/PlasmicIcon__ChevronLeft"; // plasmic-import: r9Upp9NbiZkf/icon
 import Icon2Icon from "./icons/PlasmicIcon__Icon2"; // plasmic-import: iQMfo1a3dZrA/icon
@@ -2401,6 +2401,39 @@ function PlasmicBooking__RenderFunc(props: {
                       />
                     );
                   })()}
+                  <div
+                    className={classNames(projectcss.all, sty.freeBox__hjLw8)}
+                  >
+                    <PlasmicImg__
+                      alt={""}
+                      className={classNames(sty.img__zRYt9)}
+                      displayHeight={"24px"}
+                      displayMaxHeight={"none"}
+                      displayMaxWidth={"100%"}
+                      displayMinHeight={"0"}
+                      displayMinWidth={"0"}
+                      displayWidth={"24px"}
+                      loading={"lazy"}
+                      src={{
+                        src: "/plasmic/booking/images/image12.svg",
+                        fullWidth: 229.5,
+                        fullHeight: 229.5,
+                        aspectRatio: 1
+                      }}
+                    />
+
+                    <div
+                      className={classNames(
+                        projectcss.all,
+                        projectcss.__wab_text,
+                        sty.text__qXob
+                      )}
+                    >
+                      {
+                        "\u0636\u0645\u0627\u0646\u062a 100% \u0628\u0627\u0632\u06af\u0634\u062a \u0648\u062c\u0647 \u062f\u0631 \u0635\u0648\u0631\u062a \u0646\u0627\u0631\u0636\u0627\u06cc\u062a\u06cc"
+                      }
+                    </div>
+                  </div>
                   <Button
                     children2={
                       <div
