@@ -666,40 +666,6 @@ function PlasmicBooking__RenderFunc(props: {
                   $steps["apiBook"] = await $steps["apiBook"];
                 }
 
-                $steps["_90"] = true
-                  ? (() => {
-                      const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["stateBookingProgress"]
-                        },
-                        operation: 0,
-                        value: 90
-                      };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
-                    })()
-                  : undefined;
-                if (
-                  $steps["_90"] != null &&
-                  typeof $steps["_90"] === "object" &&
-                  typeof $steps["_90"].then === "function"
-                ) {
-                  $steps["_90"] = await $steps["_90"];
-                }
-
                 $steps["setStateBook"] = true
                   ? (() => {
                       const actionArgs = {
@@ -732,6 +698,40 @@ function PlasmicBooking__RenderFunc(props: {
                   typeof $steps["setStateBook"].then === "function"
                 ) {
                   $steps["setStateBook"] = await $steps["setStateBook"];
+                }
+
+                $steps["_90"] = true
+                  ? (() => {
+                      const actionArgs = {
+                        variable: {
+                          objRoot: $state,
+                          variablePath: ["stateBookingProgress"]
+                        },
+                        operation: 0,
+                        value: 90
+                      };
+                      return (({
+                        variable,
+                        value,
+                        startIndex,
+                        deleteCount
+                      }) => {
+                        if (!variable) {
+                          return;
+                        }
+                        const { objRoot, variablePath } = variable;
+
+                        $stateSet(objRoot, variablePath, value);
+                        return value;
+                      })?.apply(null, [actionArgs]);
+                    })()
+                  : undefined;
+                if (
+                  $steps["_90"] != null &&
+                  typeof $steps["_90"] === "object" &&
+                  typeof $steps["_90"].then === "function"
+                ) {
+                  $steps["_90"] = await $steps["_90"];
                 }
 
                 $steps["apiConsultInvoiceDetails"] =
@@ -843,41 +843,46 @@ function PlasmicBooking__RenderFunc(props: {
                   $steps["hideLoader"] = await $steps["hideLoader"];
                 }
 
-                $steps["updateStateBookingProgress"] = true
+                $steps["logToSplunk"] = true
                   ? (() => {
                       const actionArgs = {
-                        variable: {
-                          objRoot: $state,
-                          variablePath: ["stateBookingProgress"]
-                        },
-                        operation: 0,
-                        value: 90
+                        args: [
+                          (() => {
+                            try {
+                              return {
+                                "event-group": "booking",
+                                event: "booking-form-loading",
+                                terminal_id: document.cookie
+                                  .split("; ")
+                                  .find(row => row.startsWith("terminal_id="))
+                                  .split("=")[1],
+                                book: $state.stateBook,
+                                consultInvoiceDetails:
+                                  $state.stateConsultInvoiceDetails
+                              };
+                            } catch (e) {
+                              if (
+                                e instanceof TypeError ||
+                                e?.plasmicType === "PlasmicUndefinedDataError"
+                              ) {
+                                return undefined;
+                              }
+                              throw e;
+                            }
+                          })()
+                        ]
                       };
-                      return (({
-                        variable,
-                        value,
-                        startIndex,
-                        deleteCount
-                      }) => {
-                        if (!variable) {
-                          return;
-                        }
-                        const { objRoot, variablePath } = variable;
-
-                        $stateSet(objRoot, variablePath, value);
-                        return value;
-                      })?.apply(null, [actionArgs]);
+                      return $globalActions["Splunk.sendLog"]?.apply(null, [
+                        ...actionArgs.args
+                      ]);
                     })()
                   : undefined;
                 if (
-                  $steps["updateStateBookingProgress"] != null &&
-                  typeof $steps["updateStateBookingProgress"] === "object" &&
-                  typeof $steps["updateStateBookingProgress"].then ===
-                    "function"
+                  $steps["logToSplunk"] != null &&
+                  typeof $steps["logToSplunk"] === "object" &&
+                  typeof $steps["logToSplunk"].then === "function"
                 ) {
-                  $steps["updateStateBookingProgress"] = await $steps[
-                    "updateStateBookingProgress"
-                  ];
+                  $steps["logToSplunk"] = await $steps["logToSplunk"];
                 }
               }}
             />
@@ -2500,6 +2505,50 @@ function PlasmicBooking__RenderFunc(props: {
                         $steps["showPaymentLoader"] = await $steps[
                           "showPaymentLoader"
                         ];
+                      }
+
+                      $steps["logToSplunk"] = true
+                        ? (() => {
+                            const actionArgs = {
+                              args: [
+                                (() => {
+                                  try {
+                                    return {
+                                      "event-group": "booking",
+                                      event: "payment-click",
+                                      terminal_id: document.cookie
+                                        .split("; ")
+                                        .find(row =>
+                                          row.startsWith("terminal_id=")
+                                        )
+                                        .split("=")[1],
+                                      book: $state.stateBook.book_info
+                                    };
+                                  } catch (e) {
+                                    if (
+                                      e instanceof TypeError ||
+                                      e?.plasmicType ===
+                                        "PlasmicUndefinedDataError"
+                                    ) {
+                                      return undefined;
+                                    }
+                                    throw e;
+                                  }
+                                })()
+                              ]
+                            };
+                            return $globalActions["Splunk.sendLog"]?.apply(
+                              null,
+                              [...actionArgs.args]
+                            );
+                          })()
+                        : undefined;
+                      if (
+                        $steps["logToSplunk"] != null &&
+                        typeof $steps["logToSplunk"] === "object" &&
+                        typeof $steps["logToSplunk"].then === "function"
+                      ) {
+                        $steps["logToSplunk"] = await $steps["logToSplunk"];
                       }
 
                       $steps["consultPayment"] = true
