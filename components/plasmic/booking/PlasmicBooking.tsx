@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -69,13 +69,14 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-
-import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_fragment_design_system } from "../fragment_design_system/PlasmicStyleTokensProvider"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicBooking.module.css"; // plasmic-import: a2O4w__PND9a/css
 
@@ -129,7 +130,16 @@ function PlasmicBooking__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -137,6 +147,7 @@ function PlasmicBooking__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -294,9 +305,14 @@ function PlasmicBooking__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsbr2UhI7UlpvR()
-  });
+  const globalVariants = _useGlobalVariants();
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_fragment_design_system =
+    useStyleTokens_fragment_design_system();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -332,9 +348,10 @@ function PlasmicBooking__RenderFunc(props: {
               projectcss.root_reset,
               projectcss.plasmic_default_styles,
               projectcss.plasmic_mixins,
-              projectcss.plasmic_tokens,
-              plasmic_fragment_design_system_css.plasmic_tokens,
-              plasmic_antd_5_hostless_css.plasmic_tokens,
+              styleTokensClassNames,
+              styleTokensClassNames_fragment_design_system,
+              styleTokensClassNames_antd_5_hostless,
+              styleTokensClassNames_plasmic_rich_components,
               sty.root
             )}
             di={undefined}
@@ -887,16 +904,8 @@ function PlasmicBooking__RenderFunc(props: {
               }}
             />
 
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__eEgsl)}
-            >
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__dfC94)}
-              >
+            <div className={classNames(projectcss.all, sty.freeBox__eEgsl)}>
+              <div className={classNames(projectcss.all, sty.freeBox__dfC94)}>
                 <div className={classNames(projectcss.all, sty.freeBox__oOqRt)}>
                   <div
                     className={classNames(projectcss.all, sty.freeBox__sSht)}
@@ -1089,9 +1098,7 @@ function PlasmicBooking__RenderFunc(props: {
                   <div
                     className={classNames(projectcss.all, sty.freeBox__ci5Ih)}
                   >
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__moI01)}
                     >
                       <ApiRequest
@@ -1101,19 +1108,24 @@ function PlasmicBooking__RenderFunc(props: {
                         errorDisplay={null}
                         loadingDisplay={null}
                         method={"GET"}
-                        onError={generateStateOnChangeProp($state, [
-                          "rateApi",
-                          "error"
-                        ])}
-                        onLoading={generateStateOnChangeProp($state, [
-                          "rateApi",
-                          "loading"
-                        ])}
+                        onError={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "rateApi",
+                            "error"
+                          ]).apply(null, eventArgs);
+                        }}
+                        onLoading={async (...eventArgs: any) => {
+                          generateStateOnChangeProp($state, [
+                            "rateApi",
+                            "loading"
+                          ]).apply(null, eventArgs);
+                        }}
                         onSuccess={async (...eventArgs: any) => {
                           generateStateOnChangeProp($state, [
                             "rateApi",
                             "data"
                           ]).apply(null, eventArgs);
+
                           (async data => {
                             const $steps = {};
                           }).apply(null, eventArgs);
@@ -1201,10 +1213,12 @@ function PlasmicBooking__RenderFunc(props: {
                           })()}
                           disabled={true}
                           multiCharacter={false}
-                          onChange={generateStateOnChangeProp($state, [
-                            "rate2",
-                            "value"
-                          ])}
+                          onChange={async (...eventArgs: any) => {
+                            generateStateOnChangeProp($state, [
+                              "rate2",
+                              "value"
+                            ]).apply(null, eventArgs);
+                          }}
                           symbols={
                             <React.Fragment>
                               <div
@@ -1288,10 +1302,8 @@ function PlasmicBooking__RenderFunc(props: {
                           </React.Fragment>
                         </div>
                       </ApiRequest>
-                    </Stack__>
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    </div>
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__tmLsx)}
                     >
                       <div
@@ -1522,7 +1534,7 @@ function PlasmicBooking__RenderFunc(props: {
                         showInfo={false}
                         strokeWidth={3}
                       />
-                    </Stack__>
+                    </div>
                   </div>
                 </div>
                 <div className={classNames(projectcss.all, sty.freeBox__yQiy2)}>
@@ -1733,7 +1745,7 @@ function PlasmicBooking__RenderFunc(props: {
                     </div>
                   </div>
                 </div>
-              </Stack__>
+              </div>
               <div className={classNames(projectcss.all, sty.freeBox___0IpxH)}>
                 <div className={classNames(projectcss.all, sty.freeBox__wUXqe)}>
                   <div
@@ -1979,9 +1991,7 @@ function PlasmicBooking__RenderFunc(props: {
                             }
                             showArrow={true}
                           >
-                            <Stack__
-                              as={"div"}
-                              hasGap={true}
+                            <div
                               className={classNames(
                                 projectcss.all,
                                 sty.freeBox___0D4UZ
@@ -2008,16 +2018,26 @@ function PlasmicBooking__RenderFunc(props: {
                                     throw e;
                                   }
                                 })()}
-                                onChange={(...eventArgs) => {
-                                  generateStateOnChangeProp($state, [
-                                    "txtDiscount",
-                                    "value"
-                                  ])(
-                                    (e => e.target?.value).apply(
-                                      null,
-                                      eventArgs
-                                    )
-                                  );
+                                onChange={async (...eventArgs: any) => {
+                                  ((...eventArgs) => {
+                                    generateStateOnChangeProp($state, [
+                                      "txtDiscount",
+                                      "value"
+                                    ])(
+                                      (e => e.target?.value).apply(
+                                        null,
+                                        eventArgs
+                                      )
+                                    );
+                                  }).apply(null, eventArgs);
+
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
+                                    return;
+                                  }
                                 }}
                                 placeholder={
                                   "\u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f ..."
@@ -2344,7 +2364,7 @@ function PlasmicBooking__RenderFunc(props: {
                                 }}
                                 size={"compact"}
                               />
-                            </Stack__>
+                            </div>
                           </AntdAccordionItem>
                           <AntdAccordionItem
                             className={classNames(
@@ -2377,12 +2397,14 @@ function PlasmicBooking__RenderFunc(props: {
                           </AntdAccordionItem>
                         </React.Fragment>
                       ),
-                      onChange: generateStateOnChangePropForCodeComponents(
-                        $state,
-                        "activePanelId",
-                        ["accordion", "activePanelId"],
-                        AntdAccordion_Helpers
-                      ),
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "activePanelId",
+                          ["accordion", "activePanelId"],
+                          AntdAccordion_Helpers
+                        ).apply(null, eventArgs);
+                      },
                       size: "small"
                     };
                     initializeCodeComponentStates(
@@ -2684,9 +2706,7 @@ function PlasmicBooking__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(
                         projectcss.all,
                         sty.freeBox___0C0A2
@@ -2729,7 +2749,7 @@ function PlasmicBooking__RenderFunc(props: {
                         showInfo={false}
                         strokeWidth={5}
                       />
-                    </Stack__>
+                    </div>
                   ) : null}
                   {(() => {
                     try {
@@ -2744,11 +2764,9 @@ function PlasmicBooking__RenderFunc(props: {
                       throw e;
                     }
                   })() ? (
-                    <Stack__
-                      as={"div"}
+                    <div
                       data-plasmic-name={"paymentLoader"}
                       data-plasmic-override={overrides.paymentLoader}
-                      hasGap={true}
                       className={classNames(projectcss.all, sty.paymentLoader)}
                     >
                       <Icon2Icon
@@ -2767,11 +2785,11 @@ function PlasmicBooking__RenderFunc(props: {
                           "\u062f\u0631 \u062d\u0627\u0644 \u0627\u0631\u0633\u0627\u0644 \u0628\u0647 \u0635\u0641\u062d\u0647 \u0628\u0627\u0646\u06a9 ..."
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   ) : null}
                 </div>
               </div>
-            </Stack__>
+            </div>
           </div>
         ) : null}
       </div>
@@ -2824,15 +2842,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicBooking__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicBooking__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicBooking__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicBooking__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

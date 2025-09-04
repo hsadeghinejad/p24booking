@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -61,11 +61,14 @@ import {
 
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_fragment_design_system } from "../fragment_design_system/PlasmicStyleTokensProvider"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicSubUserCard.module.css"; // plasmic-import: D8nfHqzg7emF/css
 
@@ -137,7 +140,9 @@ function PlasmicSubUserCard__RenderFunc(props: {
         {
           displayMessengers: false
         },
-        props.args
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
       ),
     [props.args]
   );
@@ -148,6 +153,7 @@ function PlasmicSubUserCard__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -170,33 +176,36 @@ function PlasmicSubUserCard__RenderFunc(props: {
     $refs
   });
 
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_fragment_design_system =
+    useStyleTokens_fragment_design_system();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
+
   return (
-    <Stack__
-      as={"div"}
+    <div
       data-plasmic-name={"root"}
       data-plasmic-override={overrides.root}
       data-plasmic-root={true}
       data-plasmic-for-node={forNode}
-      hasGap={true}
       className={classNames(
         projectcss.all,
         projectcss.root_reset,
         projectcss.plasmic_default_styles,
         projectcss.plasmic_mixins,
-        projectcss.plasmic_tokens,
-        plasmic_fragment_design_system_css.plasmic_tokens,
-        plasmic_antd_5_hostless_css.plasmic_tokens,
+        styleTokensClassNames,
+        styleTokensClassNames_fragment_design_system,
+        styleTokensClassNames_antd_5_hostless,
+        styleTokensClassNames_plasmic_rich_components,
         sty.root,
         { [sty.rootselected]: hasVariant($state, "selected", "selected") }
       )}
       onClick={args.onClick}
     >
       <div className={classNames(projectcss.all, sty.freeBox__ckgeg)}>
-        <Stack__
-          as={"div"}
-          hasGap={true}
-          className={classNames(projectcss.all, sty.freeBox__kak4C)}
-        >
+        <div className={classNames(projectcss.all, sty.freeBox__kak4C)}>
           <div
             className={classNames(
               projectcss.all,
@@ -243,7 +252,7 @@ function PlasmicSubUserCard__RenderFunc(props: {
               })()}
             </React.Fragment>
           </div>
-        </Stack__>
+        </div>
         <div className={classNames(projectcss.all, sty.freeBox__r3OmY)}>
           <div
             className={classNames(
@@ -273,9 +282,7 @@ function PlasmicSubUserCard__RenderFunc(props: {
             })()
           : true
       ) ? (
-        <Stack__
-          as={"div"}
-          hasGap={true}
+        <div
           className={classNames(projectcss.all, sty.freeBox__xVs4S, {
             [sty.freeBoxselected__xVs4SpnXkH]: hasVariant(
               $state,
@@ -295,11 +302,7 @@ function PlasmicSubUserCard__RenderFunc(props: {
               "\u0627\u0632 \u06a9\u062f\u0627\u0645 \u067e\u06cc\u0627\u0645 \u0631\u0633\u0627\u0646 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0645\u06cc\u06a9\u0646\u06cc\u062f\u061f"
             }
           </div>
-          <Stack__
-            as={"div"}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.freeBox__kj9Hl)}
-          >
+          <div className={classNames(projectcss.all, sty.freeBox__kj9Hl)}>
             <Button
               children2={
                 <React.Fragment>
@@ -391,10 +394,10 @@ function PlasmicSubUserCard__RenderFunc(props: {
               }}
               outline={true}
             />
-          </Stack__>
-        </Stack__>
+          </div>
+        </div>
       ) : null}
-    </Stack__>
+    </div>
   ) as React.ReactElement | null;
 }
 
@@ -420,15 +423,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicSubUserCard__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicSubUserCard__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicSubUserCard__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicSubUserCard__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

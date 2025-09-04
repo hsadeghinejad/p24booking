@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -62,11 +62,14 @@ import {
 import { ApiRequest } from "@/fragment/components/api-request"; // plasmic-import: 9xgScCI5_Ujn/codeComponent
 import SubUserCard from "../../SubUserCard"; // plasmic-import: D8nfHqzg7emF/component
 import { Fetcher } from "@plasmicapp/react-web/lib/data-sources";
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_fragment_design_system } from "../fragment_design_system/PlasmicStyleTokensProvider"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicChooseSubUser.module.css"; // plasmic-import: lj052EBNJq5u/css
 
@@ -117,7 +120,16 @@ function PlasmicChooseSubUser__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -125,6 +137,7 @@ function PlasmicChooseSubUser__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -300,6 +313,14 @@ function PlasmicChooseSubUser__RenderFunc(props: {
     $refs
   });
 
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_fragment_design_system =
+    useStyleTokens_fragment_design_system();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
+
   return (
     <React.Fragment>
       <Head></Head>
@@ -321,19 +342,16 @@ function PlasmicChooseSubUser__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
+            styleTokensClassNames,
+            styleTokensClassNames_fragment_design_system,
+            styleTokensClassNames_antd_5_hostless,
+            styleTokensClassNames_plasmic_rich_components,
             sty.root
           )}
           dir={"rtl"}
         >
           <div className={classNames(projectcss.all, sty.freeBox__ykk7F)}>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox__kjzf4)}
-            >
+            <div className={classNames(projectcss.all, sty.freeBox__kjzf4)}>
               <div
                 className={classNames(
                   projectcss.all,
@@ -373,19 +391,13 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                   "\u0644\u0637\u0641\u0627 \u0628\u06cc\u0645\u0627\u0631 \u0631\u0627 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"
                 }
               </div>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__zVLH)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__zVLH)}>
                 <ApiRequest
                   data-plasmic-name={"apiSubusers"}
                   data-plasmic-override={overrides.apiSubusers}
                   className={classNames("__wab_instance", sty.apiSubusers)}
                   errorDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__dpmF)}
                     >
                       <Icon2Icon
@@ -404,12 +416,10 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                           "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   loadingDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__afEvn)}
                     >
                       <Icon2Icon
@@ -428,21 +438,27 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                           "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   method={"GET"}
-                  onError={generateStateOnChangeProp($state, [
-                    "apiSubusers",
-                    "error"
-                  ])}
-                  onLoading={generateStateOnChangeProp($state, [
-                    "apiSubusers",
-                    "loading"
-                  ])}
-                  onSuccess={generateStateOnChangeProp($state, [
-                    "apiSubusers",
-                    "data"
-                  ])}
+                  onError={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiSubusers",
+                      "error"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLoading={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiSubusers",
+                      "loading"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onSuccess={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiSubusers",
+                      "data"
+                    ]).apply(null, eventArgs);
+                  }}
                   url={"https://apigw.paziresh24.com/api/listSubUser"}
                 >
                   {(() => {
@@ -859,7 +875,7 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                     );
                   })}
                 </ApiRequest>
-              </Stack__>
+              </div>
               <ApiRequest
                 data-plasmic-name={"apiMe"}
                 data-plasmic-override={overrides.apiMe}
@@ -868,28 +884,34 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                 errorDisplay={null}
                 loadingDisplay={null}
                 method={"GET"}
-                onError={generateStateOnChangeProp($state, ["apiMe", "error"])}
-                onLoading={generateStateOnChangeProp($state, [
-                  "apiMe",
-                  "loading"
-                ])}
-                onSuccess={generateStateOnChangeProp($state, ["apiMe", "data"])}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["apiMe", "error"]).apply(
+                    null,
+                    eventArgs
+                  );
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["apiMe", "loading"]).apply(
+                    null,
+                    eventArgs
+                  );
+                }}
+                onSuccess={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, ["apiMe", "data"]).apply(
+                    null,
+                    eventArgs
+                  );
+                }}
                 url={"https://apigw.paziresh24.com/v1/auth/me"}
               />
-            </Stack__>
-            <Stack__
-              as={"div"}
-              hasGap={true}
-              className={classNames(projectcss.all, sty.freeBox___5PnKg)}
-            >
+            </div>
+            <div className={classNames(projectcss.all, sty.freeBox___5PnKg)}>
               <ApiRequest
                 data-plasmic-name={"apiProvider"}
                 data-plasmic-override={overrides.apiProvider}
                 className={classNames("__wab_instance", sty.apiProvider)}
                 errorDisplay={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__q4Zn9)}
                   >
                     <Icon2Icon
@@ -908,12 +930,10 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                         "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 loadingDisplay={
-                  <Stack__
-                    as={"div"}
-                    hasGap={true}
+                  <div
                     className={classNames(projectcss.all, sty.freeBox__yyL7E)}
                   >
                     <Icon2Icon
@@ -932,22 +952,27 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                         "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
                       }
                     </div>
-                  </Stack__>
+                  </div>
                 }
                 method={"GET"}
-                onError={generateStateOnChangeProp($state, [
-                  "apiProvider",
-                  "error"
-                ])}
-                onLoading={generateStateOnChangeProp($state, [
-                  "apiProvider",
-                  "loading"
-                ])}
+                onError={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiProvider",
+                    "error"
+                  ]).apply(null, eventArgs);
+                }}
+                onLoading={async (...eventArgs: any) => {
+                  generateStateOnChangeProp($state, [
+                    "apiProvider",
+                    "loading"
+                  ]).apply(null, eventArgs);
+                }}
                 onSuccess={async (...eventArgs: any) => {
                   generateStateOnChangeProp($state, [
                     "apiProvider",
                     "data"
                   ]).apply(null, eventArgs);
+
                   (async data => {
                     const $steps = {};
                   }).apply(null, eventArgs);
@@ -974,9 +999,7 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                   data-plasmic-override={overrides.apiFullprofile}
                   className={classNames("__wab_instance", sty.apiFullprofile)}
                   errorDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__bxeQg)}
                     >
                       <Icon2Icon
@@ -995,12 +1018,10 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                           "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   loadingDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__h1Pm3)}
                     >
                       <Icon2Icon
@@ -1019,22 +1040,27 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                           "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   method={"GET"}
-                  onError={generateStateOnChangeProp($state, [
-                    "apiFullprofile",
-                    "error"
-                  ])}
-                  onLoading={generateStateOnChangeProp($state, [
-                    "apiFullprofile",
-                    "loading"
-                  ])}
+                  onError={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiFullprofile",
+                      "error"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLoading={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "apiFullprofile",
+                      "loading"
+                    ]).apply(null, eventArgs);
+                  }}
                   onSuccess={async (...eventArgs: any) => {
                     generateStateOnChangeProp($state, [
                       "apiFullprofile",
                       "data"
                     ]).apply(null, eventArgs);
+
                     (async data => {
                       const $steps = {};
 
@@ -1351,7 +1377,7 @@ function PlasmicChooseSubUser__RenderFunc(props: {
                   </div>
                 </ApiRequest>
               </ApiRequest>
-            </Stack__>
+            </div>
           </div>
         </div>
       </div>
@@ -1404,15 +1430,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicChooseSubUser__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicChooseSubUser__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicChooseSubUser__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicChooseSubUser__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;

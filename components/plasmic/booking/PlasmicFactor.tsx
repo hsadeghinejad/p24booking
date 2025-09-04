@@ -1,6 +1,6 @@
-// @ts-nocheck
 /* eslint-disable */
 /* tslint:disable */
+// @ts-nocheck
 /* prettier-ignore-start */
 
 /** @jsxRuntime classic */
@@ -65,13 +65,15 @@ import { accordionHelpers as AntdAccordion_Helpers } from "@plasmicpkgs/antd5/sk
 import { AntdAccordionItem } from "@plasmicpkgs/antd5/skinny/registerCollapse";
 import TextInput from "../../TextInput"; // plasmic-import: _yahxnQi1d3a/component
 import Button from "../../Button"; // plasmic-import: oVzoHzMf1TLl/component
-
-import { useScreenVariants as useScreenVariantsbr2UhI7UlpvR } from "../fragment_icons/PlasmicGlobalVariant__Screen"; // plasmic-import: BR2UhI7ulpvR/globalVariant
+import { SideEffect } from "@plasmicpkgs/plasmic-basic-components";
+import { _useGlobalVariants } from "./plasmic"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectModule
+import { _useStyleTokens } from "./PlasmicStyleTokensProvider"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_fragment_design_system } from "../fragment_design_system/PlasmicStyleTokensProvider"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_antd_5_hostless } from "../antd_5_hostless/PlasmicStyleTokensProvider"; // plasmic-import: ohDidvG9XsCeFumugENU3J/styleTokensProvider
+import { _useStyleTokens as useStyleTokens_plasmic_rich_components } from "../plasmic_rich_components/PlasmicStyleTokensProvider"; // plasmic-import: jkU633o1Cz7HrJdwdxhVHk/styleTokensProvider
 
 import "@plasmicapp/react-web/lib/plasmic.css";
 
-import plasmic_fragment_design_system_css from "../fragment_design_system/plasmic.module.css"; // plasmic-import: h9Dbk9ygddw7UVEq1NNhKi/projectcss
-import plasmic_antd_5_hostless_css from "../antd_5_hostless/plasmic.module.css"; // plasmic-import: ohDidvG9XsCeFumugENU3J/projectcss
 import projectcss from "./plasmic.module.css"; // plasmic-import: w8Roqs5CeKXUVajBnjnyHA/projectcss
 import sty from "./PlasmicFactor.module.css"; // plasmic-import: vitBSaUD2KOG/css
 
@@ -101,6 +103,7 @@ export type PlasmicFactor__OverridesType = {
   txtDiscount?: Flex__<typeof TextInput>;
   getBooks?: Flex__<typeof ApiRequest>;
   img?: Flex__<typeof PlasmicImg__>;
+  sideEffect?: Flex__<typeof SideEffect>;
 };
 
 export interface DefaultFactorProps {}
@@ -122,7 +125,16 @@ function PlasmicFactor__RenderFunc(props: {
 }) {
   const { variants, overrides, forNode } = props;
 
-  const args = React.useMemo(() => Object.assign({}, props.args), [props.args]);
+  const args = React.useMemo(
+    () =>
+      Object.assign(
+        {},
+        Object.fromEntries(
+          Object.entries(props.args).filter(([_, v]) => v !== undefined)
+        )
+      ),
+    [props.args]
+  );
 
   const $props = {
     ...args,
@@ -130,6 +142,7 @@ function PlasmicFactor__RenderFunc(props: {
   };
 
   const __nextRouter = useNextRouter();
+
   const $ctx = useDataEnv?.() || {};
   const refsRef = React.useRef({});
   const $refs = refsRef.current;
@@ -239,6 +252,12 @@ function PlasmicFactor__RenderFunc(props: {
         variableType: "text",
         initFunc: ({ $props, $state, $queries, $ctx }) =>
           "\u067e\u0631\u062f\u0627\u062e\u062a \u0648 \u0622\u063a\u0627\u0632 \u06af\u0641\u062a\u06af\u0648 \u0628\u0627 \u067e\u0632\u0634\u06a9"
+      },
+      {
+        path: "sample",
+        type: "private",
+        variableType: "object",
+        initFunc: ({ $props, $state, $queries, $ctx }) => ({})
       }
     ],
     [$props, $ctx, $refs]
@@ -250,9 +269,13 @@ function PlasmicFactor__RenderFunc(props: {
     $refs
   });
 
-  const globalVariants = ensureGlobalVariants({
-    screen: useScreenVariantsbr2UhI7UlpvR()
-  });
+  const styleTokensClassNames = _useStyleTokens();
+  const styleTokensClassNames_fragment_design_system =
+    useStyleTokens_fragment_design_system();
+  const styleTokensClassNames_antd_5_hostless =
+    useStyleTokens_antd_5_hostless();
+  const styleTokensClassNames_plasmic_rich_components =
+    useStyleTokens_plasmic_rich_components();
 
   return (
     <React.Fragment>
@@ -288,9 +311,10 @@ function PlasmicFactor__RenderFunc(props: {
             projectcss.root_reset,
             projectcss.plasmic_default_styles,
             projectcss.plasmic_mixins,
-            projectcss.plasmic_tokens,
-            plasmic_fragment_design_system_css.plasmic_tokens,
-            plasmic_antd_5_hostless_css.plasmic_tokens,
+            styleTokensClassNames,
+            styleTokensClassNames_fragment_design_system,
+            styleTokensClassNames_antd_5_hostless,
+            styleTokensClassNames_plasmic_rich_components,
             sty.root
           )}
         >
@@ -299,11 +323,7 @@ function PlasmicFactor__RenderFunc(props: {
             dir={"rtl"}
           >
             <div className={classNames(projectcss.all, sty.freeBox___9EXcY)}>
-              <Stack__
-                as={"div"}
-                hasGap={true}
-                className={classNames(projectcss.all, sty.freeBox__nJvGq)}
-              >
+              <div className={classNames(projectcss.all, sty.freeBox__nJvGq)}>
                 <div
                   className={classNames(projectcss.all, sty.freeBox__l3D5H)}
                   dir={"rtl"}
@@ -327,9 +347,7 @@ function PlasmicFactor__RenderFunc(props: {
                       sty.consultInvoiceDetails
                     )}
                     errorDisplay={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__m1T7J
@@ -351,12 +369,10 @@ function PlasmicFactor__RenderFunc(props: {
                             "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
                           }
                         </div>
-                      </Stack__>
+                      </div>
                     }
                     loadingDisplay={
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox___8IKdk
@@ -378,21 +394,27 @@ function PlasmicFactor__RenderFunc(props: {
                             "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
                           }
                         </div>
-                      </Stack__>
+                      </div>
                     }
                     method={"GET"}
-                    onError={generateStateOnChangeProp($state, [
-                      "consultInvoiceDetails",
-                      "error"
-                    ])}
-                    onLoading={generateStateOnChangeProp($state, [
-                      "consultInvoiceDetails",
-                      "loading"
-                    ])}
-                    onSuccess={generateStateOnChangeProp($state, [
-                      "consultInvoiceDetails",
-                      "data"
-                    ])}
+                    onError={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "consultInvoiceDetails",
+                        "error"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onLoading={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "consultInvoiceDetails",
+                        "loading"
+                      ]).apply(null, eventArgs);
+                    }}
+                    onSuccess={async (...eventArgs: any) => {
+                      generateStateOnChangeProp($state, [
+                        "consultInvoiceDetails",
+                        "data"
+                      ]).apply(null, eventArgs);
+                    }}
                     url={(() => {
                       try {
                         return `https://apigw.paziresh24.com/api/consultInvoiceDetails?book_id=${$ctx.params.book_id}`;
@@ -744,16 +766,26 @@ function PlasmicFactor__RenderFunc(props: {
                                     throw e;
                                   }
                                 })()}
-                                onChange={(...eventArgs) => {
-                                  generateStateOnChangeProp($state, [
-                                    "txtDiscount",
-                                    "value"
-                                  ])(
-                                    (e => e.target?.value).apply(
-                                      null,
-                                      eventArgs
-                                    )
-                                  );
+                                onChange={async (...eventArgs: any) => {
+                                  ((...eventArgs) => {
+                                    generateStateOnChangeProp($state, [
+                                      "txtDiscount",
+                                      "value"
+                                    ])(
+                                      (e => e.target?.value).apply(
+                                        null,
+                                        eventArgs
+                                      )
+                                    );
+                                  }).apply(null, eventArgs);
+
+                                  if (
+                                    eventArgs.length > 1 &&
+                                    eventArgs[1] &&
+                                    eventArgs[1]._plasmic_state_init_
+                                  ) {
+                                    return;
+                                  }
                                 }}
                                 placeholder={
                                   "\u06a9\u062f \u062a\u062e\u0641\u06cc\u0641 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f ..."
@@ -1375,12 +1407,14 @@ function PlasmicFactor__RenderFunc(props: {
                           </AntdAccordionItem>
                         </React.Fragment>
                       ),
-                      onChange: generateStateOnChangePropForCodeComponents(
-                        $state,
-                        "activePanelId",
-                        ["accordion", "activePanelId"],
-                        AntdAccordion_Helpers
-                      ),
+                      onChange: async (...eventArgs: any) => {
+                        generateStateOnChangePropForCodeComponents(
+                          $state,
+                          "activePanelId",
+                          ["accordion", "activePanelId"],
+                          AntdAccordion_Helpers
+                        ).apply(null, eventArgs);
+                      },
                       size: "large"
                     };
                     initializeCodeComponentStates(
@@ -1517,7 +1551,7 @@ function PlasmicFactor__RenderFunc(props: {
                     }
                   }}
                 />
-              </Stack__>
+              </div>
               <div className={classNames(projectcss.all, sty.freeBox__g0Crk)}>
                 <ApiRequest
                   data-plasmic-name={"getBooks"}
@@ -1540,9 +1574,7 @@ function PlasmicFactor__RenderFunc(props: {
                   })()}
                   className={classNames("__wab_instance", sty.getBooks)}
                   errorDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__qxTsw)}
                     >
                       <Icon2Icon
@@ -1561,12 +1593,10 @@ function PlasmicFactor__RenderFunc(props: {
                           "\u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0628\u0627 \u062e\u0637\u0627 \u0645\u0648\u0627\u062c\u0647 \u0634\u062f!"
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   loadingDisplay={
-                    <Stack__
-                      as={"div"}
-                      hasGap={true}
+                    <div
                       className={classNames(projectcss.all, sty.freeBox__x8YkE)}
                     >
                       <Icon2Icon
@@ -1585,21 +1615,27 @@ function PlasmicFactor__RenderFunc(props: {
                           "\u062f\u0631 \u062d\u0627\u0644 \u062f\u0631\u06cc\u0627\u0641\u062a \u0627\u0637\u0644\u0627\u0639\u0627\u062a ..."
                         }
                       </div>
-                    </Stack__>
+                    </div>
                   }
                   method={"POST"}
-                  onError={generateStateOnChangeProp($state, [
-                    "getBooks",
-                    "error"
-                  ])}
-                  onLoading={generateStateOnChangeProp($state, [
-                    "getBooks",
-                    "loading"
-                  ])}
-                  onSuccess={generateStateOnChangeProp($state, [
-                    "getBooks",
-                    "data"
-                  ])}
+                  onError={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "getBooks",
+                      "error"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onLoading={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "getBooks",
+                      "loading"
+                    ]).apply(null, eventArgs);
+                  }}
+                  onSuccess={async (...eventArgs: any) => {
+                    generateStateOnChangeProp($state, [
+                      "getBooks",
+                      "data"
+                    ]).apply(null, eventArgs);
+                  }}
                   url={"https://apigw.paziresh24.com/booking/getBooks"}
                 >
                   <div
@@ -1627,9 +1663,7 @@ function PlasmicFactor__RenderFunc(props: {
                         width={``}
                       />
 
-                      <Stack__
-                        as={"div"}
-                        hasGap={true}
+                      <div
                         className={classNames(
                           projectcss.all,
                           sty.freeBox__wn4SZ
@@ -1712,7 +1746,7 @@ function PlasmicFactor__RenderFunc(props: {
                             })()}
                           </React.Fragment>
                         </div>
-                      </Stack__>
+                      </div>
                     </div>
                     <div
                       className={classNames(
@@ -1834,6 +1868,66 @@ function PlasmicFactor__RenderFunc(props: {
                     </div>
                   </div>
                 </ApiRequest>
+                <SideEffect
+                  data-plasmic-name={"sideEffect"}
+                  data-plasmic-override={overrides.sideEffect}
+                  className={classNames("__wab_instance", sty.sideEffect)}
+                  onMount={async () => {
+                    const $steps = {};
+
+                    $steps["invokeGlobalAction"] = true
+                      ? (() => {
+                          const actionArgs = { args: [] };
+                          return $globalActions["Fragment.apiRequest"]?.apply(
+                            null,
+                            [...actionArgs.args]
+                          );
+                        })()
+                      : undefined;
+                    if (
+                      $steps["invokeGlobalAction"] != null &&
+                      typeof $steps["invokeGlobalAction"] === "object" &&
+                      typeof $steps["invokeGlobalAction"].then === "function"
+                    ) {
+                      $steps["invokeGlobalAction"] = await $steps[
+                        "invokeGlobalAction"
+                      ];
+                    }
+
+                    $steps["updateSample"] = true
+                      ? (() => {
+                          const actionArgs = {
+                            variable: {
+                              objRoot: $state,
+                              variablePath: ["sample"]
+                            },
+                            operation: 0
+                          };
+                          return (({
+                            variable,
+                            value,
+                            startIndex,
+                            deleteCount
+                          }) => {
+                            if (!variable) {
+                              return;
+                            }
+                            const { objRoot, variablePath } = variable;
+
+                            $stateSet(objRoot, variablePath, value);
+                            return value;
+                          })?.apply(null, [actionArgs]);
+                        })()
+                      : undefined;
+                    if (
+                      $steps["updateSample"] != null &&
+                      typeof $steps["updateSample"] === "object" &&
+                      typeof $steps["updateSample"].then === "function"
+                    ) {
+                      $steps["updateSample"] = await $steps["updateSample"];
+                    }
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -1851,14 +1945,16 @@ const PlasmicDescendants = {
     "accordion",
     "txtDiscount",
     "getBooks",
-    "img"
+    "img",
+    "sideEffect"
   ],
   consultInvoiceDetails: ["consultInvoiceDetails", "discountRow"],
   discountRow: ["discountRow"],
   accordion: ["accordion", "txtDiscount"],
   txtDiscount: ["txtDiscount"],
   getBooks: ["getBooks", "img"],
-  img: ["img"]
+  img: ["img"],
+  sideEffect: ["sideEffect"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -1871,6 +1967,7 @@ type NodeDefaultElementType = {
   txtDiscount: typeof TextInput;
   getBooks: typeof ApiRequest;
   img: typeof PlasmicImg__;
+  sideEffect: typeof SideEffect;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -1885,15 +1982,15 @@ type NodeComponentProps<T extends NodeNameType> =
     args?: PlasmicFactor__ArgsType;
     overrides?: NodeOverridesType<T>;
   } & Omit<PlasmicFactor__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
-    /* Specify args directly as props*/ Omit<
-      PlasmicFactor__ArgsType,
-      ReservedPropsType
-    > &
-    /* Specify overrides for each element directly as props*/ Omit<
+    // Specify args directly as props
+    Omit<PlasmicFactor__ArgsType, ReservedPropsType> &
+    // Specify overrides for each element directly as props
+    Omit<
       NodeOverridesType<T>,
       ReservedPropsType | VariantPropType | ArgPropType
     > &
-    /* Specify props for the root element*/ Omit<
+    // Specify props for the root element
+    Omit<
       Partial<React.ComponentProps<NodeDefaultElementType[T]>>,
       ReservedPropsType | VariantPropType | ArgPropType | DescendantsType<T>
     >;
@@ -1939,6 +2036,7 @@ export const PlasmicFactor = Object.assign(
     txtDiscount: makeNodeComponent("txtDiscount"),
     getBooks: makeNodeComponent("getBooks"),
     img: makeNodeComponent("img"),
+    sideEffect: makeNodeComponent("sideEffect"),
 
     // Metadata about props expected for PlasmicFactor
     internalVariantProps: PlasmicFactor__VariantProps,

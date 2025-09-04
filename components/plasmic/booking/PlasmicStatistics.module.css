@@ -1,0 +1,213 @@
+.root {
+  display: grid;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-content: flex-start;
+  justify-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  background: var(--token-Pxe4wDL2kJpb);
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns:
+    var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
+    min(
+      var(--plsmc-standard-width),
+      calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
+    )
+    minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
+}
+.root > * {
+  grid-column: 4;
+}
+.freeBox__kjIgh {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox___9Z4R {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.freeBox__zoPL {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+.text__f2C5Y {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-width: 0;
+}
+.freeBox__zC6Sh {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  background: #ffffff;
+  min-width: 0;
+  border-radius: 15px;
+  padding: 30px 8px 8px;
+}
+.freeBox__dtQtq {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-direction: row;
+  min-width: 0;
+  padding: 8px;
+}
+.button__v513N:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__dhMfq {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__aPmU {
+  height: auto;
+}
+.svg__kRr3S {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__sC92S:global(.__wab_instance) {
+  max-width: 100%;
+}
+.svg__hjDrF {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__oXs2 {
+  padding-right: 0px;
+}
+.svg__m2UWc {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__kIrxg:global(.__wab_instance) {
+  max-width: 100%;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+}
+.svg__zttRa {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__ozXRu {
+  background: url("/plasmic/booking/images/image13.png") top 50% right 9.63% / auto 15px
+    no-repeat padding-box padding-box;
+  padding-right: 24px;
+}
+.svg__bpsVp {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button__ioMng:global(.__wab_instance) {
+  max-width: 100%;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+}
+.svg__grpsz {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__yqTz {
+  background: url("/plasmic/booking/images/image13.png") top 50% right 9.63% / auto 15px
+    no-repeat padding-box padding-box;
+  padding-right: 24px;
+}
+.svg__zdVjq {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.button___3Gj4C:global(.__wab_instance) {
+  max-width: 100%;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+}
+.svg__krZix {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.text__wS7JR {
+  background: url("/plasmic/booking/images/image13.png") top 50% right 9.63% / auto 15px
+    no-repeat padding-box padding-box;
+  padding-right: 24px;
+}
+.svg__lJ0Nb {
+  position: relative;
+  object-fit: cover;
+  width: auto;
+  height: 1em;
+}
+.freeBox__sBrdx {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  padding: 8px;
+}
+.chart:global(.__wab_instance) {
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  min-width: 0;
+}
